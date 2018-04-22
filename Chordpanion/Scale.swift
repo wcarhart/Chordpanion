@@ -22,6 +22,7 @@ enum ScaleClassification {
     case octatonic_2
     
     case blues
+    case bebop
     case chromatic
     case wholetone
     
@@ -43,9 +44,9 @@ struct Scale: CustomStringConvertible {
     
     init(in key: Note, ofType scale: ScaleClassification) {
         notes = []
+        classification = scale
         switch scale {
         case .major, .mode_ionian:
-            classification = scale
             // whole-whole-half-whole-whole-whole-half
             // from major - built off scale degree 1
             
@@ -64,7 +65,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .minor_natural, .mode_aeolian:
-            classification = scale
             // whole-half-whole-whole-half-whole-whole
             // from major - built off scale degree 6
             
@@ -83,7 +83,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .minor_harmonic:
-            classification = scale
             // whole-half-whole-whole-half-augmentedSecond-half
             
             var note = key
@@ -101,7 +100,6 @@ struct Scale: CustomStringConvertible {
             note = note.augmentedSecond()
             notes.append(note)
         case .minor_melodic:
-            classification = scale
             // whole-half-whole-whole-whole-whole-half
             
             var note = key
@@ -119,7 +117,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .pentatonic_1_major:
-            classification = scale
             // of major scale - 1-2-3-5-6
             
             var note = key
@@ -133,7 +130,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .pentatonic_2_major:
-            classification = scale
             // of major - 1-2-4-5-6
             
             var note = key
@@ -147,7 +143,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .pentatonic_1_minor:
-            classification = scale
             // of minor - 1-2-3-5-6
             
             var note = key
@@ -161,7 +156,6 @@ struct Scale: CustomStringConvertible {
             note = note.halfStep()
             notes.append(note)
         case .pentatonic_2_minor:
-            classification = scale
             // of minor - 1-2-4-5-6
             
             var note = key
@@ -175,7 +169,6 @@ struct Scale: CustomStringConvertible {
             note = note.halfStep()
             notes.append(note)
         case .octatonic_1:
-            classification = scale
             // whole-half-whole-half-whole-half-whole-half
             
             var note = key
@@ -197,7 +190,6 @@ struct Scale: CustomStringConvertible {
             note = note.halfStep()
             notes.append(note)
         case .octatonic_2:
-            classification = scale
             // half-whole-half-whole-half-whole-half-whole
             
             var note = key
@@ -219,7 +211,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .blues:
-            classification = scale
             // from major - 1-b3-4-b5-5-b7
             
             var note = key
@@ -234,8 +225,27 @@ struct Scale: CustomStringConvertible {
             notes.append(note)
             note = note.augmentedSecond()
             notes.append(note)
+        case .bebop:
+            // whole-whole-half-whole-whole-half-half-half
+            // major with a b7
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
         case .chromatic:
-            classification = scale
             // half-half-half-half-half-half-half-half-half-half-half-half
             
             var note = key
@@ -244,7 +254,6 @@ struct Scale: CustomStringConvertible {
                 note = note.halfStep()
             }
         case .wholetone:
-            classification = scale
             // whole-whole-whole-whole-whole-whole
             
             var note = key
@@ -253,7 +262,6 @@ struct Scale: CustomStringConvertible {
                 note = note.wholeStep()
             }
         case .mode_dorian:
-            classification = scale
             // from major - built off scale degree 2
             
             var note = key
@@ -271,7 +279,6 @@ struct Scale: CustomStringConvertible {
             note = note.halfStep()
             notes.append(note)
         case .mode_phrygian:
-            classification = scale
             // from major - built off scale degree 3
             
             var note = key
@@ -289,7 +296,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .mode_lydian:
-            classification = scale
             // from major - built off scale degree 4
             
             var note = key
@@ -307,7 +313,6 @@ struct Scale: CustomStringConvertible {
             note = note.wholeStep()
             notes.append(note)
         case .mode_mixolydian:
-            classification = scale
             // from major - built off scale degree 5
             
             var note = key
@@ -325,7 +330,6 @@ struct Scale: CustomStringConvertible {
             note = note.halfStep()
             notes.append(note)
         case .mode_locrian:
-            classification = scale
             // from major - built off scale degree 7
             
             var note = key
@@ -365,9 +369,26 @@ struct Scale: CustomStringConvertible {
         }
     }
     
-    var description: String {
+    // true if major key of C, G, D, A, E, B, F#, C#
+    // false if major key of F, Bb, Eb, Ab, Db, Gb, Cb
+    func checkCircleOfFifths() -> Bool {
+        var key = self.notes[0]
         
-        // TODO: need to differentiate between #'s and b's based on circle of fifths
+        if self.classification == .minor_harmonic || self.classification == .minor_melodic || self.classification == .minor_harmonic || self.classification == .mode_aeolian {
+            key = key.augmentedSecond()
+        }
+        
+        if key.name == "C" || key.name == "G" || key.name == "D" || key.name == "A" || key.name == "E" || key.name == "B" || key.name == "F#" || key.name == "C#" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var description: String {
+        let useSharps = checkCircleOfFifths()
+        
+        // TODO: make this more robust (account for bb, b, nat, #, ##)
         
         var toPrint: String = ""
         for note in notes {
@@ -375,25 +396,45 @@ struct Scale: CustomStringConvertible {
             case 0:
                 toPrint += "C "
             case 1:
-                toPrint += "C# "
+                if useSharps {
+                    toPrint += "C# "
+                } else {
+                    toPrint += "Db "
+                }
             case 2:
                 toPrint += "D "
             case 3:
-                toPrint += "D# "
+                if useSharps {
+                    toPrint += "D# "
+                } else {
+                    toPrint += "Eb "
+                }
             case 4:
                 toPrint += "E "
             case 5:
                 toPrint += "F "
             case 6:
-                toPrint += "F# "
+                if useSharps {
+                    toPrint += "F# "
+                } else {
+                    toPrint += "Gb "
+                }
             case 7:
                 toPrint += "G "
             case 8:
-                toPrint += "G# "
+                if useSharps {
+                    toPrint += "G# "
+                } else {
+                    toPrint += "Ab "
+                }
             case 9:
                 toPrint += "A "
             case 10:
-                toPrint += "A# "
+                if useSharps {
+                    toPrint += "A# "
+                } else {
+                    toPrint += "Bb "
+                }
             case 11:
                 toPrint += "B "
             default:

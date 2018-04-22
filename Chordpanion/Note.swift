@@ -19,33 +19,134 @@ struct Note: Equatable, Comparable {
     var accidentalModifier: Int
     
     var name: String {
-        switch value {
-        case 0:
+        switch (value, accidentalModifier) {
+        // C
+        case (0, -2):
+            return "Dbb"
+        case (0, 0):
             return "C"
-        case 1:
+        case (0, 1):
+            return "B#"
+
+        // C#/Db
+        case (1, -1):
+            return "Db"
+        // TODO: Determine if this should be C# or Db
+        // will it ever reach this case?
+        /*
+        case (1, 0):
+            return "Db"
+        */
+        case (1, 1):
             return "C#"
-        case 2:
+        case (1, 2):
+            return "B##"
+
+        // D
+        case (2, -2):
+            return "Ebb"
+        case (2, 0):
             return "D"
-        case 3:
+        case (2, 2):
+            return "C##"
+            
+        // D#/Eb
+        case (3, -2):
+            return "Fbb"
+        case (3, -1):
+            return "Eb"
+        // TODO: Determine if this should be D# or Eb
+        // will it ever reach this case?
+        /*
+        case (3, 0):
+            return "Eb"
+        */
+        case (3, 1):
             return "D#"
-        case 4:
+            
+        // E
+        case (4, -1):
+            return "Fb"
+        case (4, 0):
             return "E"
-        case 5:
+        case (4, 2):
+            return "D##"
+            
+        // F
+        case (5, -2):
+            return "Gbb"
+        case (5, 0):
             return "F"
-        case 6:
+        case (5, 1):
+            return "E#"
+            
+        // F#/Gb
+        case (6, -1):
+            return "Gb"
+        // TODO: Determine if this should be F# or Gb
+        // will it ever reach this case?
+        /*
+        case (6, 0):
+            return "Gb"
+        */
+        case (6, 1):
             return "F#"
-        case 7:
+        case (6, 2):
+            return "E##"
+            
+        // G
+        case (7, -2):
+            return "Abb"
+        case (7, 0):
             return "G"
-        case 8:
+        case (7, 2):
+            return "F##"
+            
+        // G#/Ab
+        case (8, -1):
+            return "Ab"
+        // TODO: Determine if this should be G# or Ab
+        // will it ever reach this case?
+        /*
+        case (8, 0):
+            return "Ab"
+        */
+        case (8, 1):
             return "G#"
-        case 9:
+            
+            
+        // A
+        case (9, -2):
+            return "Bbb"
+        case (9, 0):
             return "A"
-        case 10:
+        case (9, 2):
+            return "G##"
+            
+        // A#/Bb
+        case (10, -2):
+            return "Cbb"
+        case (10, -1):
+            return "Bb"
+        // TODO: Determine if this should be A# or Bb
+        // will it ever reach this case?
+        /*
+        case (10, 0):
+            return "Bb"
+        */
+        case (10, 1):
             return "A#"
-        case 11:
+            
+        // B
+        case (11, -1):
+            return "Cb"
+        case (11, 0):
             return "B"
+        case (11, 2):
+            return "A##"
+            
         default:
-            return ""
+            return "ERROR"
         }
     }
     
