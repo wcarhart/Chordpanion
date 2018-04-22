@@ -13,10 +13,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let C = Note(name: "Bb")!
+        let C = Note(name: "C")!
+        let Cmajor = Scale(in: C, ofType: .major)
+        let I_vi_IV_V = Progression(in: Cmajor, withDegrees: [.I, .vi, .IV, .V])!
+        print(I_vi_IV_V)
         
-        let scale = Scale(in: C, ofType: .major)
+        let Bb = Note(name: "Bb")!
+        let Bbmajor = Scale(in: Bb, ofType: .major)
+        let TheGeneral_progression = Progression(in: Bbmajor, withDegrees: [.I, .V, .ii, .vi, .IV, .I, .V, .V])!
+        print(TheGeneral_progression)
         
+        let A = Note(name: "A")!
+        let Amajor = Scale(in: A, ofType: .major)
+        let myProgression = Progression(in: Amajor, withDegrees: [.I, .V, .vi, .iii, .IV, .I, .V, .V])!
+        
+        // TODO: prints out Gb instead of F# and Db instead of C#
+        print(myProgression)
+        
+        
+        
+        /*
         let Cmaj = Chord(in: C, ofType: .major)
         let Cm = Chord(in: C, ofType: .minor)
         let C5 = Chord(in: C, ofType: .fifth)
@@ -92,6 +108,7 @@ class ViewController: UIViewController {
         print("\(C7b9.name): \(C7b9)")
         print("\(C7plus9.name): \(C7plus9)")
         print("\(C7sharp9.name): \(C7sharp9)")
+        */
     }
 
 }

@@ -69,7 +69,7 @@ struct Chord: CustomStringConvertible, Equatable {
         classification = chord
         switch chord {
         case .major:
-            name = key.name.uppercased()
+            name = key.name
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -77,7 +77,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .minor:
-            name = "\(key.name.uppercased())m"
+            name = "\(key.name)m"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -85,13 +85,13 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .fifth:
-            name = "\(key.name.uppercased())5"
+            name = "\(key.name)5"
             var note = key
             notes.append(note)
             note = note.augmentedSecond().augmentedSecond().halfStep()
             notes.append(note)
         case .sixth:
-            name = "\(key.name.uppercased())6"
+            name = "\(key.name)6"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -101,7 +101,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .minorSixth:
-            name = "\(key.name.uppercased())m6"
+            name = "\(key.name)m6"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -111,7 +111,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .sixAddNine:
-            name = "\(key.name.uppercased())6/9"
+            name = "\(key.name)6/9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -123,7 +123,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond().wholeStep()
             notes.append(note)
         case .dominantSeventh:
-            name = "\(key.name.uppercased())7"
+            name = "\(key.name)7"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -133,7 +133,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .minorSeventh:
-            name = "\(key.name.uppercased())m7"
+            name = "\(key.name)m7"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -143,7 +143,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .majorSeventh:
-            name = "\(key.name.uppercased())maj7"
+            name = "\(key.name)maj7"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -153,11 +153,11 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .union:
-            name = "\(key.name.uppercased())u"
+            name = "\(key.name)u"
             notes.append(key)
             notes.append(key)
         case .dominantNinth:
-            name = "\(key.name.uppercased())9"
+            name = "\(key.name)9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -169,7 +169,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .minorNinth:
-            name = "\(key.name.uppercased())m9"
+            name = "\(key.name)m9"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -181,7 +181,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .majorNinth:
-            name = "\(key.name.uppercased())maj9"
+            name = "\(key.name)maj9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -193,7 +193,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .eleventh:
-            name = "\(key.name.uppercased())11"
+            name = "\(key.name)11"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -207,7 +207,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .thirteenth:
-            name = "\(key.name.uppercased())13"
+            name = "\(key.name)13"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -223,7 +223,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .addTwo:
-            name = "\(key.name.uppercased())add2"
+            name = "\(key.name)add2"
             var note = key
             notes.append(note)
             note = note.wholeStep()
@@ -233,7 +233,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .addNine:
-            name = "\(key.name.uppercased())add9"
+            name = "\(key.name)add9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -243,7 +243,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = key.wholeStep()
             notes.append(note)
         case .susTwo:
-            name = "\(key.name.uppercased())sus2"
+            name = "\(key.name)sus2"
             var note = key
             notes.append(note)
             note = note.wholeStep()
@@ -251,7 +251,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond().wholeStep()
             notes.append(note)
         case .susFour:
-            name = "\(key.name.uppercased())sus4"
+            name = "\(key.name)sus4"
             var note = key
             notes.append(note)
             note = note.augmentedSecond().wholeStep()
@@ -259,7 +259,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .sustained:
-            name = "\(key.name.uppercased())sus"
+            name = "\(key.name)sus"
             var note = key
             notes.append(note)
             note = note.wholeStep()
@@ -269,7 +269,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .sevenSusFour:
-            name = "\(key.name.uppercased())7sus4"
+            name = "\(key.name)7sus4"
             var note = key
             notes.append(note)
             note = note.augmentedSecond().wholeStep()
@@ -279,7 +279,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .nineSusFour:
-            name = "\(key.name.uppercased())9sus4"
+            name = "\(key.name)9sus4"
             var note = key
             notes.append(note)
             note = note.augmentedSecond().wholeStep()
@@ -291,7 +291,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .diminished:
-            name = "\(key.name.uppercased())dim"
+            name = "\(key.name)dim"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -299,7 +299,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .diminishedSeventh:
-            name = "\(key.name.uppercased())dim7"
+            name = "\(key.name)dim7"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -309,7 +309,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .minorSeventhFlatFive:
-            name = "\(key.name.uppercased())m7b5"
+            name = "\(key.name)m7b5"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -319,7 +319,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .halfDiminished:
-            name = "\(key.name.uppercased())∅"
+            name = "\(key.name)∅"
             var note = key
             notes.append(note)
             note = note.augmentedSecond()
@@ -329,7 +329,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .augmented:
-            name = "\(key.name.uppercased())aug"
+            name = "\(key.name)aug"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -337,7 +337,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .augmentedSeventh:
-            name = "\(key.name.uppercased())aug7"
+            name = "\(key.name)aug7"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -347,7 +347,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .sevenSharpFive:
-            name = "\(key.name.uppercased())7#5"
+            name = "\(key.name)7#5"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -357,7 +357,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .sevenPlusFive:
-            name = "\(key.name.uppercased())7+5"
+            name = "\(key.name)7+5"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -367,7 +367,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep()
             notes.append(note)
         case .sevenFlatFive:
-            name = "\(key.name.uppercased())7b5"
+            name = "\(key.name)7b5"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -377,7 +377,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .sevenMinusFive:
-            name = "\(key.name.uppercased())7-5"
+            name = "\(key.name)7-5"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -387,7 +387,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.wholeStep().wholeStep()
             notes.append(note)
         case .sevenFlatNine:
-            name = "\(key.name.uppercased())7b9"
+            name = "\(key.name)7b9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -399,7 +399,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .sevenMinusNine:
-            name = "\(key.name.uppercased())7-9"
+            name = "\(key.name)7-9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -411,7 +411,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond()
             notes.append(note)
         case .sevenSharpNine:
-            name = "\(key.name.uppercased())7#9"
+            name = "\(key.name)7#9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()
@@ -423,7 +423,7 @@ struct Chord: CustomStringConvertible, Equatable {
             note = note.augmentedSecond().wholeStep()
             notes.append(note)
         case .sevenPlusNine:
-            name = "\(key.name.uppercased())7+9"
+            name = "\(key.name)7+9"
             var note = key
             notes.append(note)
             note = note.wholeStep().wholeStep()

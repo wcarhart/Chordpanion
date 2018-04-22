@@ -32,11 +32,8 @@ struct Note: Equatable, Comparable {
         case (1, -1):
             return "Db"
         // TODO: Determine if this should be C# or Db
-        // will it ever reach this case?
-        /*
         case (1, 0):
             return "Db"
-        */
         case (1, 1):
             return "C#"
         case (1, 2):
@@ -56,11 +53,8 @@ struct Note: Equatable, Comparable {
         case (3, -1):
             return "Eb"
         // TODO: Determine if this should be D# or Eb
-        // will it ever reach this case?
-        /*
         case (3, 0):
             return "Eb"
-        */
         case (3, 1):
             return "D#"
             
@@ -84,11 +78,8 @@ struct Note: Equatable, Comparable {
         case (6, -1):
             return "Gb"
         // TODO: Determine if this should be F# or Gb
-        // will it ever reach this case?
-        /*
         case (6, 0):
             return "Gb"
-        */
         case (6, 1):
             return "F#"
         case (6, 2):
@@ -106,11 +97,8 @@ struct Note: Equatable, Comparable {
         case (8, -1):
             return "Ab"
         // TODO: Determine if this should be G# or Ab
-        // will it ever reach this case?
-        /*
         case (8, 0):
             return "Ab"
-        */
         case (8, 1):
             return "G#"
             
@@ -129,11 +117,8 @@ struct Note: Equatable, Comparable {
         case (10, -1):
             return "Bb"
         // TODO: Determine if this should be A# or Bb
-        // will it ever reach this case?
-        /*
         case (10, 0):
             return "Bb"
-        */
         case (10, 1):
             return "A#"
             
@@ -146,6 +131,7 @@ struct Note: Equatable, Comparable {
             return "A##"
             
         default:
+            print("Uh oh, found value = \(value) and modifier = \(accidentalModifier)")
             return "ERROR"
         }
     }
