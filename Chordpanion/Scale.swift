@@ -14,10 +14,16 @@ enum ScaleClassification {
     case minor_harmonic
     case minor_melodic
     
-    case pentatonic_1
-    case pentatonic_2
+    case pentatonic_1_major
+    case pentatonic_2_major
+    case pentatonic_1_minor
+    case pentatonic_2_minor
     case octatonic_1
     case octatonic_2
+    
+    case blues
+    case chromatic
+    case wholetone
     
     case mode_ionian
     case mode_dorian
@@ -26,8 +32,6 @@ enum ScaleClassification {
     case mode_mixolydian
     case mode_aeolian
     case mode_locrian
-    
-    case chromatic
     
     case unclassified
 }
@@ -43,6 +47,7 @@ struct Scale: CustomStringConvertible {
         case .major, .mode_ionian:
             classification = scale
             // whole-whole-half-whole-whole-whole-half
+            // from major - built off scale degree 1
             
             var note = key
             notes.append(note)
@@ -61,6 +66,7 @@ struct Scale: CustomStringConvertible {
         case .minor_natural, .mode_aeolian:
             classification = scale
             // whole-half-whole-whole-half-whole-whole
+            // from major - built off scale degree 6
             
             var note = key
             notes.append(note)
@@ -76,10 +82,274 @@ struct Scale: CustomStringConvertible {
             notes.append(note)
             note = note.wholeStep()
             notes.append(note)
-        default:
+        case .minor_harmonic:
+            classification = scale
+            // whole-half-whole-whole-half-augmentedSecond-half
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.augmentedSecond()
+            notes.append(note)
+        case .minor_melodic:
+            classification = scale
+            // whole-half-whole-whole-whole-whole-half
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .pentatonic_1_major:
+            classification = scale
+            // of major scale - 1-2-3-5-6
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.augmentedSecond()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .pentatonic_2_major:
+            classification = scale
+            // of major - 1-2-4-5-6
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.augmentedSecond()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .pentatonic_1_minor:
+            classification = scale
+            // of minor - 1-2-3-5-6
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep().wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+        case .pentatonic_2_minor:
+            classification = scale
+            // of minor - 1-2-4-5-6
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.augmentedSecond()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+        case .octatonic_1:
+            classification = scale
+            // whole-half-whole-half-whole-half-whole-half
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+        case .octatonic_2:
+            classification = scale
+            // half-whole-half-whole-half-whole-half-whole
+            
+            var note = key
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .blues:
+            classification = scale
+            // from major - 1-b3-4-b5-5-b7
+            
+            var note = key
+            notes.append(note)
+            note = note.augmentedSecond()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.augmentedSecond()
+            notes.append(note)
+        case .chromatic:
+            classification = scale
+            // half-half-half-half-half-half-half-half-half-half-half-half
+            
+            var note = key
+            for _ in 1...12 {
+                notes.append(note)
+                note = note.halfStep()
+            }
+        case .wholetone:
+            classification = scale
+            // whole-whole-whole-whole-whole-whole
+            
+            var note = key
+            for _ in 1...6 {
+                notes.append(note)
+                note = note.wholeStep()
+            }
+        case .mode_dorian:
+            classification = scale
+            // from major - built off scale degree 2
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+        case .mode_phrygian:
+            classification = scale
+            // from major - built off scale degree 3
+            
+            var note = key
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .mode_lydian:
+            classification = scale
+            // from major - built off scale degree 4
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .mode_mixolydian:
+            classification = scale
+            // from major - built off scale degree 5
+            
+            var note = key
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+        case .mode_locrian:
+            classification = scale
+            // from major - built off scale degree 7
+            
+            var note = key
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.halfStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+            note = note.wholeStep()
+            notes.append(note)
+        case .unclassified:
             classification = .unclassified
             break
         }
+    }
+    
+    func note(at index: Int) -> Note? {
+        return index <= notes.count ? notes[index] : nil
     }
     
     mutating func repeatTonic() {
