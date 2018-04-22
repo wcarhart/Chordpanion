@@ -14,6 +14,9 @@
 		72949A20208C1837001D0911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72949A1E208C1837001D0911 /* LaunchScreen.storyboard */; };
 		72949A2B208C1837001D0911 /* ChordpanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A2A208C1837001D0911 /* ChordpanionTests.swift */; };
 		72949A36208C1837001D0911 /* ChordpanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A35208C1837001D0911 /* ChordpanionUITests.swift */; };
+		72949A44208C1A77001D0911 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A43208C1A77001D0911 /* Note.swift */; };
+		72949A48208C1D09001D0911 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A47208C1D09001D0911 /* Chord.swift */; };
+		72949A4A208C1D11001D0911 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A49208C1D11001D0911 /* Scale.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		72949A31208C1837001D0911 /* ChordpanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChordpanionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72949A35208C1837001D0911 /* ChordpanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordpanionUITests.swift; sourceTree = "<group>"; };
 		72949A37208C1837001D0911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72949A43208C1A77001D0911 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		72949A47208C1D09001D0911 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		72949A49208C1D11001D0911 /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				72949A1C208C1837001D0911 /* Assets.xcassets */,
 				72949A1E208C1837001D0911 /* LaunchScreen.storyboard */,
 				72949A21208C1837001D0911 /* Info.plist */,
+				72949A43208C1A77001D0911 /* Note.swift */,
+				72949A47208C1D09001D0911 /* Chord.swift */,
+				72949A49208C1D11001D0911 /* Scale.swift */,
 			);
 			path = Chordpanion;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				72949A18208C1834001D0911 /* ViewController.swift in Sources */,
+				72949A48208C1D09001D0911 /* Chord.swift in Sources */,
 				72949A16208C1834001D0911 /* AppDelegate.swift in Sources */,
+				72949A44208C1A77001D0911 /* Note.swift in Sources */,
+				72949A4A208C1D11001D0911 /* Scale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
