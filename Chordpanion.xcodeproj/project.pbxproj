@@ -17,6 +17,7 @@
 		72949A44208C1A77001D0911 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A43208C1A77001D0911 /* Note.swift */; };
 		72949A48208C1D09001D0911 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A47208C1D09001D0911 /* Chord.swift */; };
 		72949A4A208C1D11001D0911 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A49208C1D11001D0911 /* Scale.swift */; };
+		72949A4E208C2492001D0911 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A4D208C2492001D0911 /* Step.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		72949A43208C1A77001D0911 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		72949A47208C1D09001D0911 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		72949A49208C1D11001D0911 /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
+		72949A4D208C2492001D0911 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				72949A43208C1A77001D0911 /* Note.swift */,
 				72949A47208C1D09001D0911 /* Chord.swift */,
 				72949A49208C1D11001D0911 /* Scale.swift */,
+				72949A4D208C2492001D0911 /* Step.swift */,
 			);
 			path = Chordpanion;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				72949A18208C1834001D0911 /* ViewController.swift in Sources */,
 				72949A48208C1D09001D0911 /* Chord.swift in Sources */,
 				72949A16208C1834001D0911 /* AppDelegate.swift in Sources */,
+				72949A4E208C2492001D0911 /* Step.swift in Sources */,
 				72949A44208C1A77001D0911 /* Note.swift in Sources */,
 				72949A4A208C1D11001D0911 /* Scale.swift in Sources */,
 			);
