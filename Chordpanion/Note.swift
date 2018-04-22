@@ -8,16 +8,6 @@
 
 import Foundation
 
-enum Notes: Int {
-    case C = 0
-    case D = 2
-    case E = 4
-    case F = 5
-    case G = 7
-    case A = 9
-    case B = 11
-}
-
 struct Note: Equatable, Comparable {
     
     var value: Int {
