@@ -23,6 +23,13 @@ class ViewController: UIViewController {
         let TheGeneral_progression = Progression(in: Bbmajor, withDegrees: [.I, .V, .ii, .vi, .IV, .I, .V, .V])!
         print(TheGeneral_progression)
         
+        let A = Note(name: "A")!
+        let Amajor = Scale(in: A, ofType: .major)
+        let myProgression = Progression(in: Amajor, withDegrees: [.I, .V, .vi, .iii, .IV, .I, .V, .V])!
+        
+        // TODO: prints out Gb instead of F# and Db instead of C#
+        print(myProgression)
+        
         
         
         /*
