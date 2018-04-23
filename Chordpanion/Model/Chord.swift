@@ -63,7 +63,7 @@ enum ChordClassification {
 struct Chord: CustomStringConvertible, Equatable {
     var notes: [Note]
     var classification: ChordClassification
-    var name: String
+    private (set) var name: String
     var bassNote: Note?
     
     init(in key: Note, ofType chord: ChordClassification) {
@@ -571,6 +571,10 @@ struct Chord: CustomStringConvertible, Equatable {
         } else {
             return (false, flatSeventh)
         }
+    }
+    
+    mutating func setName(to name: String) {
+        self.name = name
     }
     
     var description: String {
