@@ -13,6 +13,7 @@ struct Note: Equatable, Comparable {
     var value: Int {
         didSet {
             value = value % 12
+            // DEBUG:
             print("WARNING: note value didSet()")
         }
     }
@@ -252,6 +253,8 @@ struct Note: Equatable, Comparable {
             return nil
         }
     }
+    
+    // MARK: Equatable + Comparable functions
     
     static func == (lhs: Note, rhs: Note) -> Bool{
        return lhs.value == rhs.value

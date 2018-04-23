@@ -14,7 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let C = Note(name: "C")!
-        let newChord = Chord(in: C, ofType: .major, withStructure: "1 b3 5")!
+        //var newChord = Chord(in: C, ofType: .major, withStructure: "1 b3 5")!
+        //newChord.setBassNote(to: Note(name: "G")!)
+        var newChord = Chord(in: C, ofType: .fifth)
+        print("\(newChord.name): \(newChord)")
+        newChord.alter(with: "3", inKey: C, onScale: .major)
         print("\(newChord.name): \(newChord)")
         
         /*
@@ -66,8 +70,8 @@ class ViewController: UIViewController {
         let Chalfdim = Chord(in: C, ofType: .halfDiminished)
         let Caug = Chord(in: C, ofType: .augmented)
         let Caug7 = Chord(in: C, ofType: .augmentedSeventh)
-        let Caug7plus5 = Chord(in: C, ofType: .sevenPlusFive)
-        let Caug7sharp5 = Chord(in: C, ofType: .sevenSharpFive)
+        let C7plus5 = Chord(in: C, ofType: .sevenPlusFive)
+        let C7sharp5 = Chord(in: C, ofType: .sevenSharpFive)
         let C7minus5 = Chord(in: C, ofType: .sevenMinusFive)
         let C7b5 = Chord(in: C, ofType: .sevenFlatFive)
         let C7minus9 = Chord(in: C, ofType: .sevenMinusNine)
@@ -105,8 +109,8 @@ class ViewController: UIViewController {
         print("\(Chalfdim.name): \(Chalfdim)")
         print("\(Caug.name): \(Caug)")
         print("\(Caug7.name): \(Caug7)")
-        print("\(Caug7plus5.name): \(Caug7plus5)")
-        print("\(Caug7sharp5.name): \(Caug7sharp5)")
+        print("\(C7plus5.name): \(C7plus5)")
+        print("\(C7sharp5.name): \(C7sharp5)")
         print("\(C7minus5.name): \(C7minus5)")
         print("\(C7b5.name): \(C7b5)")
         print("\(C7minus9.name): \(C7minus9)")

@@ -479,6 +479,11 @@ struct Chord: CustomStringConvertible, Equatable {
         name = detectChordType(key: key)
     }
     
+    mutating func setBassNote(to note: Note) {
+        self.bassNote = note
+        self.name += "/\(self.bassNote?.name ?? "")"
+    }
+    
     func detectChordType(key: Note) -> String {
         var chord: Chord?
         for scale in iterateEnum(ChordClassification.self) {
@@ -500,10 +505,46 @@ struct Chord: CustomStringConvertible, Equatable {
         }
     }
     
-    func alter(with alterations: String) {
+    // returns true if successful
+    // returns false if failure
+    mutating func alter(with alterations: String, inKey key: Note, onScale scale: ScaleClassification) -> Bool{
+        let baseScale = Scale(in: key, ofType: scale)
+        var modifier = ""
+        
         for char in alterations {
-            
+            switch char {
+            case "#":
+                modifier = "#"
+            case "b":
+                modifier = "b"
+            case " ":
+                continue
+            default:
+                guard var index = Int(String(char)) else { return false }
+                index = index % 12
+                var note = baseScale.note(at: index - 1)!
+                
+                if modifier == "#" {
+                    note.sharp()
+                } else if modifier == "b" {
+                    note.flat()
+                } else if modifier == "##" || modifier == "x" {
+                    note.doubleSharp()
+                } else if modifier == "bb" {
+                    note.doubleFlat()
+                }
+                
+                let noteValues = self.notes.map( { $0.value })
+                if !noteValues.contains(note.value) {
+                    self.notes.append(note)
+                }
+                
+                modifier = ""
+            }
         }
+        self.notes = self.notes.sorted()
+        name = detectChordType(key: key)
+        return true
     }
     
     // first boolean: useSharps?
@@ -536,7 +577,6 @@ struct Chord: CustomStringConvertible, Equatable {
         let (useSharps, flatSeven): (Bool, Bool) = checkCircleOfFifths()
         
         // TODO: need to determine 7th step of scale and use flat instead of sharp for aug, aug7, 7+5, and 7#5 (currently halfway implemented)
-        
         
         // TODO: make this more robust (account for bb, b, nat, #, ##)
         
@@ -591,6 +631,11 @@ struct Chord: CustomStringConvertible, Equatable {
                 toPrint = "Error"
             }
         }
+        
+        if let bassNote = self.bassNote {
+            toPrint += "/ \(bassNote.name)"
+        }
+        
         return toPrint
     }
     
