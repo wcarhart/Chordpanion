@@ -56,6 +56,8 @@ enum ChordClassification {
     case sevenFlatNine
     case sevenPlusNine      // equiv. to 7#9
     case sevenSharpNine
+    
+    case unknown
 }
 
 struct Chord: CustomStringConvertible, Equatable {
@@ -434,12 +436,18 @@ struct Chord: CustomStringConvertible, Equatable {
             notes.append(note)
             note = note.augmentedSecond().wholeStep()
             notes.append(note)
+        case .unknown:
+            name = ""
+            break
         }
     }
     
-    /*
     init?(in key: Note, ofType scale: ScaleClassification, withStructure notes: String) {
         self.notes = []
+        name = ""
+        classification = .unknown
+        let baseScale = Scale(in: key, ofType: scale)
+        
         var modifier: String = ""
         for char in notes {
             switch char {
@@ -447,42 +455,61 @@ struct Chord: CustomStringConvertible, Equatable {
                 modifier = "#"
             case "b":
                 modifier = "b"
-            case "/":
-                modifier = "/"
+            case " ":
+                continue
             default:
                 guard var index = Int(String(char)) else { return nil }
-                if modifier == "/" {
-                    index = index % 12
-                    let baseScale = Scale(in: key, ofType: scale)
-                    bassNote = baseScale.note(at: index - 1)!
-                    return
-                } else {
-                    index = index % 12
-                    let baseScale = Scale(in: key, ofType: scale)
-                    var note = baseScale.note(at: index - 1)!
-                    
-                    if modifier == "#" {
-                        note.sharp()
-                    } else if modifier == "b" {
-                        note.flat()
-                    }
-                    
-                    self.notes.append(note)
-                    modifier = ""
+                index = index % 12
+                var note = baseScale.note(at: index - 1)!
+                
+                if modifier == "#" {
+                    note.sharp()
+                } else if modifier == "b" {
+                    note.flat()
+                } else if modifier == "##" || modifier == "x" {
+                    note.doubleSharp()
+                } else if modifier == "bb" {
+                    note.doubleFlat()
                 }
+                
+                self.notes.append(note)
+                modifier = ""
             }
         }
+        name = detectChordType(key: key)
     }
-    */
     
-    func alter(with: String) {
-        
+    func detectChordType(key: Note) -> String {
+        var chord: Chord?
+        for scale in iterateEnum(ChordClassification.self) {
+            chord = Chord(in: key, ofType: scale)
+            if chord?.notes == self.notes {
+                return (chord?.name)!
+            }
+        }
+        return ""
+    }
+    
+    func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
+        var i = 0
+        return AnyIterator {
+            let next = withUnsafeBytes(of: &i) { $0.load(as: T.self) }
+            if next.hashValue != i { return nil }
+            i += 1
+            return next
+        }
+    }
+    
+    func alter(with alterations: String) {
+        for char in alterations {
+            
+        }
     }
     
     // first boolean: useSharps?
     // true if major key of C, G, D, A, E, B, F#, C#
     // false if major key of F, Bb, Eb, Ab, Db, Gb, Cb
-    
+    //
     // second boolean: flatSeventh?
     func checkCircleOfFifths() -> (Bool, Bool) {
         var key = self.notes[0]
