@@ -18,7 +18,8 @@ class ViewController: UIViewController {
         //newChord.setBassNote(to: Note(name: "G")!)
         var newChord = Chord(in: C, ofType: .fifth)
         print("\(newChord.name): \(newChord)")
-        newChord.alter(with: "3", inKey: C, onScale: .major)
+        let val = newChord.alter(with: "bb6", inKey: C, onScale: .major)
+        print(val)
         print("\(newChord.name): \(newChord)")
         
         /*

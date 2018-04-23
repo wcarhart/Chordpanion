@@ -442,6 +442,7 @@ struct Chord: CustomStringConvertible, Equatable {
         }
     }
     
+    // TODO: doesn't work with "bb" and "##"
     init?(in key: Note, ofType scale: ScaleClassification, withStructure notes: String) {
         self.notes = []
         name = ""
@@ -507,6 +508,8 @@ struct Chord: CustomStringConvertible, Equatable {
     
     // returns true if successful
     // returns false if failure
+    
+    // TODO: doesn't work with "bb" and "##"
     mutating func alter(with alterations: String, inKey key: Note, onScale scale: ScaleClassification) -> Bool{
         let baseScale = Scale(in: key, ofType: scale)
         var modifier = ""
@@ -544,7 +547,10 @@ struct Chord: CustomStringConvertible, Equatable {
         }
         self.notes = self.notes.sorted()
         name = detectChordType(key: key)
-        return true
+        if modifier == "" {
+            return true
+        }
+        return false
     }
     
     // first boolean: useSharps?
