@@ -14,6 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let C = Note(name: "C")!
+        let newChord = Chord(in: C, ofType: .major, withStructure: "1 b3 5")!
+        print("\(newChord.name): \(newChord)")
+        
+        /*
+        let C = Note(name: "C")!
         let Cmajor = Scale(in: C, ofType: .major)
         let I_vi_IV_V = Progression(in: Cmajor, withDegrees: [.I, .vi, .IV, .V])!
         print(I_vi_IV_V)
@@ -29,7 +34,7 @@ class ViewController: UIViewController {
         
         // TODO: prints out Gb instead of F# and Db instead of C#
         print(myProgression)
-        
+        */
         
         
         /*

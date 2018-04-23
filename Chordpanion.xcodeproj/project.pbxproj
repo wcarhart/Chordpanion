@@ -105,16 +105,11 @@
 		72949A14208C1834001D0911 /* Chordpanion */ = {
 			isa = PBXGroup;
 			children = (
-				72949A15208C1834001D0911 /* AppDelegate.swift */,
-				72949A17208C1834001D0911 /* ViewController.swift */,
-				72949A19208C1834001D0911 /* Main.storyboard */,
+				72949A52208D9565001D0911 /* Model */,
+				72949A54208D958C001D0911 /* View */,
+				72949A55208D959A001D0911 /* Controller */,
 				72949A1C208C1837001D0911 /* Assets.xcassets */,
-				72949A1E208C1837001D0911 /* LaunchScreen.storyboard */,
 				72949A21208C1837001D0911 /* Info.plist */,
-				72949A43208C1A77001D0911 /* Note.swift */,
-				72949A47208C1D09001D0911 /* Chord.swift */,
-				72949A49208C1D11001D0911 /* Scale.swift */,
-				72949A4F208C74CD001D0911 /* Progression.swift */,
 			);
 			path = Chordpanion;
 			sourceTree = "<group>";
@@ -135,6 +130,35 @@
 				72949A37208C1837001D0911 /* Info.plist */,
 			);
 			path = ChordpanionUITests;
+			sourceTree = "<group>";
+		};
+		72949A52208D9565001D0911 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				72949A43208C1A77001D0911 /* Note.swift */,
+				72949A47208C1D09001D0911 /* Chord.swift */,
+				72949A49208C1D11001D0911 /* Scale.swift */,
+				72949A4F208C74CD001D0911 /* Progression.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		72949A54208D958C001D0911 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				72949A19208C1834001D0911 /* Main.storyboard */,
+				72949A1E208C1837001D0911 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		72949A55208D959A001D0911 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				72949A15208C1834001D0911 /* AppDelegate.swift */,
+				72949A17208C1834001D0911 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
