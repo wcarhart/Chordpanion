@@ -71,9 +71,9 @@ enum Step {
     case augmentedSecond
 }
 
-struct Scale: CustomStringConvertible {
+struct Scale {
     
-    var notes: [Note]
+    private var notes: [Note]
     var classification: ScaleClassification
     
     init(in key: Note, ofType scale: ScaleClassification) {
@@ -122,7 +122,7 @@ struct Scale: CustomStringConvertible {
             
         case .bebop:
             // major with a b7
-            buildScale(ofOff: key, withStep: [.whole, .whole, .half, .whole, .whole, .half, .half, .half])
+            buildScale(ofOff: key, withSteps: [.whole, .whole, .half, .whole, .whole, .half, .half, .half])
             
         case .chromatic:
             // half-half-half-half-half-half-half-half-half-half-half-half
@@ -143,78 +143,23 @@ struct Scale: CustomStringConvertible {
         case .mode_dorian:
             // from major - built off scale degree 2
             buildScale(ofOff: key, withSteps: [.whole, .half, .whole, .whole, .whole, .half])
-        }
-    }
-    
-    
+            
         case .mode_phrygian:
             // from major - built off scale degree 3
+            buildScale(ofOff: key, withSteps: [.half, .whole, .whole, .whole, .half, .whole])
             
-            var note = key
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .mode_lydian:
             // from major - built off scale degree 4
+            buildScale(ofOff: key, withSteps: [.whole, .whole, .whole, .half, .whole, .whole])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .mode_mixolydian:
             // from major - built off scale degree 5
+            buildScale(ofOff: key, withSteps: [.whole, .whole, .half, .whole, .whole, .half])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
         case .mode_locrian:
             // from major - built off scale degree 7
+            buildScale(ofOff: key, withSteps: [.half, .whole, .whole, .half, .whole, .whole])
             
-            var note = key
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .unclassified:
             classification = .unclassified
             break
@@ -292,78 +237,9 @@ struct Scale: CustomStringConvertible {
         }
     }
     
-    // true if major key of C, G, D, A, E, B, F#, C#
-    // false if major key of F, Bb, Eb, Ab, Db, Gb, Cb
-    func checkCircleOfFifths() -> Bool {
-        var key = self.notes[0]
-        
-        if self.classification == .minor_harmonic || self.classification == .minor_melodic || self.classification == .minor_harmonic || self.classification == .mode_aeolian {
-            key = key.augmentedSecond()
-        }
-        
-        if key.name == "C" || key.name == "G" || key.name == "D" || key.name == "A" || key.name == "E" || key.name == "B" || key.name == "F#" || key.name == "C#" {
-            return true
-        } else {
-            return false
-        }
-    }
+}
+
+extension Scale: CustomStringConvertible {
+    // TODO: fix this
     
-    var description: String {
-        let useSharps = checkCircleOfFifths()
-        
-        // TODO: make this more robust (account for bb, b, nat, #, ##)
-        
-        var toPrint: String = ""
-        for note in notes {
-            switch note.value {
-            case 0:
-                toPrint += "C "
-            case 1:
-                if useSharps {
-                    toPrint += "C# "
-                } else {
-                    toPrint += "Db "
-                }
-            case 2:
-                toPrint += "D "
-            case 3:
-                if useSharps {
-                    toPrint += "D# "
-                } else {
-                    toPrint += "Eb "
-                }
-            case 4:
-                toPrint += "E "
-            case 5:
-                toPrint += "F "
-            case 6:
-                if useSharps {
-                    toPrint += "F# "
-                } else {
-                    toPrint += "Gb "
-                }
-            case 7:
-                toPrint += "G "
-            case 8:
-                if useSharps {
-                    toPrint += "G# "
-                } else {
-                    toPrint += "Ab "
-                }
-            case 9:
-                toPrint += "A "
-            case 10:
-                if useSharps {
-                    toPrint += "A# "
-                } else {
-                    toPrint += "Bb "
-                }
-            case 11:
-                toPrint += "B "
-            default:
-                toPrint = "Error"
-            }
-        }
-        return toPrint
-    }
 }
