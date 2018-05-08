@@ -79,14 +79,22 @@ struct Note {
         return Note(value: (self.value + value) % 12)
     }
     
+    func interval(_ interval: Interval) -> Note {
+        return Note(value: (self.value + interval.rawValue) % 12)
+    }
+    
 }
 
-extension Note: Comparable, Equatable {
+extension Note: Comparable, Equatable, CustomStringConvertible {
     static func == (lhs: Note, rhs: Note) -> Bool {
         return lhs.value == rhs.value
     }
     
     static func < (lhs: Note, rhs: Note) -> Bool {
         return lhs.value < rhs.value
+    }
+    
+    var description: String {
+        return String(self.value)
     }
 }

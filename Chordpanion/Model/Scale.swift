@@ -37,32 +37,32 @@ enum ScaleClassification {
     case unclassified
 }
 
-enum Interval {
-    case P1
-    case m2
-    case M2
-    case m3
-    case M3
-    case P4
-    case TT
-    case P5
-    case m6
-    case M6
-    case m7
-    case M7
-    case P8
-    case m9
-    case M9
-    case m10
-    case M10
-    case P11
-    case TT12
-    case P13
-    case m14
-    case M14
-    case m15
-    case M15
-    case P16
+enum Interval: Int {
+    case P1 = 0
+    case m2 = 1
+    case M2 = 2
+    case m3 = 3
+    case M3 = 4
+    case P4 = 5
+    case TT = 6
+    case P5 = 7
+    case m6 = 8
+    case M6 = 9
+    case m7 = 10
+    case M7 = 11
+    case P8 = 12
+    case m9 = 13
+    case M9 = 14
+    case m10 = 15
+    case M10 = 16
+    case P11 = 17
+    case TT2 = 18
+    case P12 = 19
+    case m13 = 20
+    case M13 = 21
+    case m14 = 22
+    case M14 = 23
+    case P15 = 24
 }
 
 enum Step {
@@ -239,7 +239,10 @@ struct Scale {
     
 }
 
+// TODO: fix this
+/*
 extension Scale: CustomStringConvertible {
-    // TODO: fix this
+
     
 }
+ */
