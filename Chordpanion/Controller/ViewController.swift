@@ -13,16 +13,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let C = Note(name: "C")!
+        //let C = Note(name: "C")!
         //var newChord = Chord(in: C, ofType: .major, withStructure: "1 b3 5")!
         //newChord.setBassNote(to: Note(name: "G")!)
         var newChord = Chord(in: C, ofType: .fifth)
         print("\(newChord.name): \(newChord)")
-        let val = newChord.alter(with: "bb6", inKey: C, onScale: .major)
+        let val = newChord.alter(with: "b6", inKey: C, onScale: .major)
         print(val)
         print("\(newChord.name): \(newChord)")
         
-        /*
+        
         let C = Note(name: "C")!
         let Cmajor = Scale(in: C, ofType: .major)
         let I_vi_IV_V = Progression(in: Cmajor, withDegrees: [.I, .vi, .IV, .V])!
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         
         // TODO: prints out Gb instead of F# and Db instead of C#
         print(myProgression)
-        */
+        
         
         
         /*

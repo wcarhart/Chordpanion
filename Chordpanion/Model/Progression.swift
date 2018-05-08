@@ -8,20 +8,6 @@
 
 import Foundation
 
-enum Interval {
-    case m2
-    case M2
-    case m3
-    case M3
-    case P4
-    case P5
-    case TT
-    case m6
-    case M6
-    case m7
-    case M7
-}
-
 enum ScaleDegree {
     case I
     case II

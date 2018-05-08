@@ -37,247 +37,116 @@ enum ScaleClassification {
     case unclassified
 }
 
+enum Interval {
+    case P1
+    case m2
+    case M2
+    case m3
+    case M3
+    case P4
+    case TT
+    case P5
+    case m6
+    case M6
+    case m7
+    case M7
+    case P8
+    case m9
+    case M9
+    case m10
+    case M10
+    case P11
+    case TT12
+    case P13
+    case m14
+    case M14
+    case m15
+    case M15
+    case P16
+}
+
+enum Step {
+    case whole
+    case half
+    case augmentedSecond
+}
+
 struct Scale: CustomStringConvertible {
     
     var notes: [Note]
     var classification: ScaleClassification
     
     init(in key: Note, ofType scale: ScaleClassification) {
-        notes = []
-        classification = scale
+        self.notes = []
+        self.classification = scale
         switch scale {
         case .major, .mode_ionian:
-            // whole-whole-half-whole-whole-whole-half
             // from major - built off scale degree 1
+            buildScale(ofOff: key, withSteps: [.whole, .whole, .half, .whole, .whole, .whole, .half])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .minor_natural, .mode_aeolian:
-            // whole-half-whole-whole-half-whole-whole
             // from major - built off scale degree 6
+            buildScale(ofOff: key, withSteps: [.whole, .half, .whole, .whole, .half, .whole, .whole])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .minor_harmonic:
-            // whole-half-whole-whole-half-augmentedSecond-half
+            buildScale(ofOff: key, withSteps: [.whole, .half, .whole, .whole, .half, .augmentedSecond, .half])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
         case .minor_melodic:
-            // whole-half-whole-whole-whole-whole-half
-            
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
+            buildScale(ofOff: key, withSteps: [.whole, .half, .whole, .whole, .whole, .whole, .half])
+
         case .pentatonic_1_major:
-            // of major scale - 1-2-3-5-6
+            // off major scale - 1-2-3-5-6
+            buildScale(ofOff: key, withIntervals: [.M2, .M3, .P5, .M6])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .pentatonic_2_major:
-            // of major - 1-2-4-5-6
+            // off major - 1-2-4-5-6
+            buildScale(ofOff: key, withIntervals: [.M2, .P4, .P5, .M6])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .pentatonic_1_minor:
-            // of minor - 1-2-3-5-6
+            // off minor - 1-2-3-5-6
+            buildScale(ofOff: key, withIntervals: [.M2, .m3, .P5, .m6])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
         case .pentatonic_2_minor:
-            // of minor - 1-2-4-5-6
+            // off minor - 1-2-4-5-6
+            buildScale(ofOff: key, withIntervals: [.M2, .P4, .P5, .m6])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
         case .octatonic_1:
-            // whole-half-whole-half-whole-half-whole-half
+            buildScale(ofOff: key, withSteps: [.whole, .half, .whole, .half, .whole, .half, .whole, .half])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
         case .octatonic_2:
-            // half-whole-half-whole-half-whole-half-whole
+            buildScale(ofOff: key, withSteps: [.half, .whole, .half, .whole, .half, .whole, .half, .whole])
             
-            var note = key
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
         case .blues:
             // from major - 1-b3-4-b5-5-b7
+            buildScale(ofOff: key, withIntervals: [.m3, .P4, .TT, .P5, .m7])
             
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
         case .bebop:
-            // whole-whole-half-whole-whole-half-half-half
             // major with a b7
+            buildScale(ofOff: key, withStep: [.whole, .whole, .half, .whole, .whole, .half, .half, .half])
             
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
         case .chromatic:
             // half-half-half-half-half-half-half-half-half-half-half-half
-            
             var note = key
             for _ in 1...12 {
                 notes.append(note)
                 note = note.halfStep()
             }
+            
         case .wholetone:
             // whole-whole-whole-whole-whole-whole
-            
             var note = key
             for _ in 1...6 {
                 notes.append(note)
                 note = note.wholeStep()
             }
+            
         case .mode_dorian:
             // from major - built off scale degree 2
-            
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.halfStep()
-            notes.append(note)
+            buildScale(ofOff: key, withSteps: [.whole, .half, .whole, .whole, .whole, .half])
+        }
+    }
+    
+    
         case .mode_phrygian:
             // from major - built off scale degree 3
             
@@ -349,6 +218,60 @@ struct Scale: CustomStringConvertible {
         case .unclassified:
             classification = .unclassified
             break
+        }
+    }
+    
+    private mutating func buildScale(ofOff key: Note, withIntervals intervals: [Interval]) {
+        
+        self.notes.append(key)
+        
+        for interval in intervals {
+            switch interval {
+            case .P1, .P8, .P16:
+                self.notes.append(key)
+            case .m2, .m9:
+                self.notes.append(key.cloneNote(withHalfSteps: 1))
+            case .M2, .M9:
+                self.notes.append(key.cloneNote(withHalfSteps: 2))
+            case .m3, .m10:
+                self.notes.append(key.cloneNote(withHalfSteps: 3))
+            case .M3, .M10:
+                self.notes.append(key.cloneNote(withHalfSteps: 4))
+            case .P4, .P11:
+                self.notes.append(key.cloneNote(withHalfSteps: 5))
+            case .TT, .TT12:
+                self.notes.append(key.cloneNote(withHalfSteps: 6))
+            case .P5, .P13:
+                self.notes.append(key.cloneNote(withHalfSteps: 7))
+            case .m6, .m14:
+                self.notes.append(key.cloneNote(withHalfSteps: 8))
+            case .M6, .M14:
+                self.notes.append(key.cloneNote(withHalfSteps: 9))
+            case .m7, .m15:
+                self.notes.append(key.cloneNote(withHalfSteps: 10))
+            case .M7, .M15:
+                self.notes.append(key.cloneNote(withHalfSteps: 11))
+            }
+        }
+    }
+    
+    private mutating func buildScale(ofOff key: Note, withSteps steps: [Step]) {
+        
+        var note = key
+        self.notes.append(note)
+        
+        for step in steps {
+            switch step {
+            case.half:
+                note = note.halfStep()
+                self.notes.append(note)
+            case .whole:
+                note = note.wholeStep()
+                self.notes.append(note)
+            case .augmentedSecond:
+                note = note.augmentedSecond()
+                self.notes.append(note)
+            }
         }
     }
     
