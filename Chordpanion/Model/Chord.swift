@@ -80,13 +80,13 @@ struct Chord {
         
         switch degree {
         case .I, .II, .III, .IV, .V, .VI, .VII:
-            guard key.classification != .major else {
+            guard key.classification == .major else {
                 print("ERROR: major scale degree requires a major scale")
                 return nil
             }
             quality = .major
         case .i, .ii, .iii, .iv, .v, .vi, .vii:
-            guard key.classification != .minor_natural && key.classification != .minor_melodic && key.classification != .minor_harmonic else {
+            guard key.classification != .minor_natural || key.classification != .minor_melodic || key.classification != .minor_harmonic else {
                 print("ERROR: minor scale degree requires a minor scale")
                 return nil
             }
@@ -150,9 +150,12 @@ struct Chord {
     }
     
     private mutating func buildChord(ofOff key: Note, ofType classification: ChordClassification) {
+        
         let note = key
         self.notes.append(note)
+        
         switch classification {
+        // basic chords
         case .major:
             self.notes.append(key.interval(.M3))
             self.notes.append(key.interval(.P5))
@@ -217,6 +220,7 @@ struct Chord {
             self.notes.append(key.interval(.P11))
             self.notes.append(key.interval(.M13))
             
+        // add chords
         case .addNine:
             self.notes.append(key.interval(.M3))
             self.notes.append(key.interval(.P5))
@@ -229,31 +233,72 @@ struct Chord {
             self.notes.append(key.interval(.M2))
             self.notes.append(key.interval(.P5))
         case .susFour:
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
         case .sustained:
-            
+            self.notes.append(key.interval(.M2))
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
         case .sevenSusFour:
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
         case .nineSusFour:
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.M9))
             
+        // diminished chords
         case .diminished:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.TT))
         case .diminishedSeventh:
-        case .minorSeventhFlatFive:
-        case .halfDiminished:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.TT))
+            self.notes.append(key.interval(.M6))
+        case .minorSeventhFlatFive, .halfDiminished:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.TT))
+            self.notes.append(key.interval(.m7))
             
+        // augmented
         case .augmented:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.m6))
         case .augmentedSeventh, .sevenPlusFive, .sevenSharpFive:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.m6))
+            self.notes.append(key.interval(.m7))
         case .sevenMinusFive, .sevenFlatFive:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.TT))
+            self.notes.append(key.interval(.m7))
         case .sevenMinusNine, .sevenFlatNine:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.m9))
         case .sevenPlusNine, .sevenSharpNine:
-        case .unknown
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.m10))
+        case .unknown:
+            print("ERROR: could not classify chord")
+            fatalError("Could not classify chord")
         }
     }
     
 }
 
-// TODO: make conform to CustomStringWhateverIt'sCalled
-extension Chord: Equatable {
+extension Chord: Equatable, CustomStringConvertible {
     static func == (lhs: Chord, rhs: Chord) -> Bool {
         return lhs.notes == rhs.notes
+    }
+    
+    var description: String {
+        return self.notes.map { String($0.value) }.joined(separator: "-")
     }
 }
 

@@ -172,7 +172,7 @@ struct Scale {
         
         for interval in intervals {
             switch interval {
-            case .P1, .P8, .P16:
+            case .P1, .P8, .P15:
                 self.notes.append(key)
             case .m2, .m9:
                 self.notes.append(key.cloneNote(withHalfSteps: 1))
@@ -184,17 +184,17 @@ struct Scale {
                 self.notes.append(key.cloneNote(withHalfSteps: 4))
             case .P4, .P11:
                 self.notes.append(key.cloneNote(withHalfSteps: 5))
-            case .TT, .TT12:
+            case .TT, .TT2:
                 self.notes.append(key.cloneNote(withHalfSteps: 6))
-            case .P5, .P13:
+            case .P5, .P12:
                 self.notes.append(key.cloneNote(withHalfSteps: 7))
-            case .m6, .m14:
+            case .m6, .m13:
                 self.notes.append(key.cloneNote(withHalfSteps: 8))
-            case .M6, .M14:
+            case .M6, .M13:
                 self.notes.append(key.cloneNote(withHalfSteps: 9))
-            case .m7, .m15:
+            case .m7, .m14:
                 self.notes.append(key.cloneNote(withHalfSteps: 10))
-            case .M7, .M15:
+            case .M7, .M14:
                 self.notes.append(key.cloneNote(withHalfSteps: 11))
             }
         }
@@ -239,10 +239,9 @@ struct Scale {
     
 }
 
-// TODO: fix this
-/*
 extension Scale: CustomStringConvertible {
-
+    var description: String {
+        return self.notes.map { String($0.value) }.joined(separator: "-")
+    }
     
 }
- */
