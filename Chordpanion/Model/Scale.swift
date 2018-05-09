@@ -75,6 +75,7 @@ struct Scale {
     
     private var notes: [Note]
     var classification: ScaleClassification
+    private var name: String?
     
     init(in key: Note, ofType scale: ScaleClassification) {
         self.notes = []
@@ -237,11 +238,75 @@ struct Scale {
         }
     }
     
+    mutating func setName(to name: String) {
+        self.name = name
+    }
+    
 }
 
 extension Scale: CustomStringConvertible {
+    
+    private func prepareToPrint() -> [Int: String] {
+        var nameToUse: String
+        var toReturn = [Int: String]()
+
+        if let name = self.name {
+            nameToUse = name
+        } else {
+            nameToUse = resolveName()
+        }
+
+        switch nameToUse.lowercased() {
+        // TODO: add more enharmonic equivalents
+        case "c":
+            toReturn = [0: "C", 2: "D", 4: "E", 5: "F", 7: "G", 9: "A", 11: "B"]
+        case "c#":
+        case "db":
+        case "d":
+            // etc.
+        default:
+            break
+        }
+        
+        return toReturn
+    }
+    
+    private func resolveName() -> String {
+        switch self.notes[0].value {
+        case 0:
+            return "C"
+        case 1:
+            return "C#"
+        case 2:
+            return "D"
+        case 3:
+            return "D#"
+        case 4:
+            return "E"
+        case 5:
+            return "F"
+        case 6:
+            return "F#"
+        case 7:
+            return "G"
+        case 8:
+            return "G#"
+        case 9:
+            return "A"
+        case 10:
+            return "A#"
+        case 11:
+            return "B"
+        default:
+            print("ERROR: could not determine note value")
+            fatalError("Could not determine note value")
+        }
+    }
+    
+    
     var description: String {
-        return self.notes.map { String($0.value) }.joined(separator: "-")
+        let toPrint = prepareToPrint()
+        return toPrint.sorted { $0.key < $1.key }.map { $0.value }.joined(separator: "-")
     }
     
 }

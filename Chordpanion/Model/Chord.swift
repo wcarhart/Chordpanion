@@ -297,6 +297,10 @@ extension Chord: Equatable, CustomStringConvertible {
         return lhs.notes == rhs.notes
     }
     
+    func output() {
+        
+    }
+    
     var description: String {
         return self.notes.map { String($0.value) }.joined(separator: "-")
     }
