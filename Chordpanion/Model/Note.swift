@@ -41,7 +41,7 @@ struct Note {
         case "a#", "bb", "cbb":
             self.value = 10
         case "a##", "b", "cb":
-            self.value = 5
+            self.value = 11
         default:
             return nil
         }

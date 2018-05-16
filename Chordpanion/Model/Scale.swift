@@ -77,6 +77,75 @@ struct Scale {
     var classification: ScaleClassification
     private var name: String?
     
+    init(inKeyNamed key: String, ofType scale: ScaleClassification) {
+        
+        let note: Note
+        var name: String
+        
+        switch key.lowercased() {
+        case "c":
+            note = Note(value: 0)
+            name = "C"
+        case "c#":
+            note = Note(value: 1)
+            name = "C#"
+        case "db":
+            note = Note(value: 1)
+            name = "Db"
+        case "d":
+            note = Note(value: 2)
+            name = "D"
+        case "d#":
+            note = Note(value: 3)
+            name = "D#"
+        case "eb":
+            note = Note(value: 3)
+            name = "Eb"
+        case "e":
+            note = Note(value: 4)
+            name = "E"
+        case "f":
+            note = Note(value: 5)
+            name = "F"
+        case "f#":
+            note = Note(value: 6)
+            name = "F#"
+        case "gb":
+            note = Note(value: 6)
+            name = "Gb"
+        case "g":
+            note = Note(value: 7)
+            name = "G"
+        case "g#":
+            note = Note(value: 8)
+            name = "G#"
+        case "ab":
+            note = Note(value: 8)
+            name = "Ab"
+        case "a":
+            note = Note(value: 9)
+            name = "A"
+        case "a#":
+            note = Note(value: 10)
+            name = "A#"
+        case "bb":
+            note = Note(value: 10)
+            name = "Bb"
+        case "b":
+            note = Note(value: 11)
+            name = "B"
+        case "cb":
+            note = Note(value: 11)
+            name = "Cb"
+        default:
+            print("ERROR: invalid note name for key")
+            fatalError("invalid note name for key")
+        }
+        
+        self = Scale(in: note, ofType: scale)
+        self.name = name
+    }
+    
     init(in key: Note, ofType scale: ScaleClassification) {
         self.notes = []
         self.classification = scale
@@ -253,17 +322,52 @@ extension Scale: CustomStringConvertible {
         if let name = self.name {
             nameToUse = name
         } else {
+            print("WARNING: no key specified, attempting to detect key...")
             nameToUse = resolveName()
         }
+        
+        // TODO: need to handle minor cases, just move key up 3 half steps and use logic below
 
         switch nameToUse.lowercased() {
-        // TODO: add more enharmonic equivalents
         case "c":
             toReturn = [0: "C", 2: "D", 4: "E", 5: "F", 7: "G", 9: "A", 11: "B"]
         case "c#":
+            toReturn = [1: "C#", 3: "D#", 5: "E#", 6: "F#", 8: "G#", 10: "A#", 0: "B#"]
         case "db":
+            toReturn = [1: "Db", 3: "Eb", 5: "F", 6: "Gb", 8: "Ab", 10: "Bb", 0: "C"]
         case "d":
-            // etc.
+            toReturn = [2: "D", 4: "E", 6: "F#", 7: "G", 9: "A", 11: "B", 1: "C"]
+        case "d#":
+            // TODO: minor key, how to handle this?
+            break
+        case "eb":
+            toReturn = [3: "Eb", 5: "F", 7: "G", 8: "Ab", 10: "Bb", 0: "C", 2: "D"]
+        case "e":
+            toReturn = [4: "E", 6: "F#", 8: "G", 9: "A", 11: "B", 1: "C#", 3: "D#"]
+        case "f":
+            toReturn = [5: "F", 7: "G", 9: "A", 10: "Bb", 0: "C", 2: "D", 4: "E"]
+        case "f#":
+            toReturn = [6: "F#", 8: "G#", 10: "A#", 11: "B", 1: "C#", 3: "D#", 5: "E#"]
+        case "gb":
+            toReturn = [6: "Gb", 8: "Ab", 10: "Bb", 11: "Cb", 1: "Db", 3: "Eb", 5: "F"]
+        case "g":
+            toReturn = [7: "G", 9: "A", 11: "B", 0: "C", 2: "D", 4: "E", 6: "F#"]
+        case "g#":
+            // TODO: minor key, how to handle this?
+            break
+        case "ab":
+            toReturn = [8: "Ab", 10: "Bb", 0: "C", 1: "Db", 3: "Eb", 5: "F", 7: "G"]
+        case "a":
+            toReturn = [9: "A", 11: "B", 1: "C#", 2: "D", 4: "E", 6: "F#", 8: "G#"]
+        case "a#":
+            // TODO: minor key, how to handle this?
+            break
+        case "bb":
+            toReturn = [10: "Bb", 0: "C", 2: "D", 3: "Eb", 5: "F", 7: "G", 9: "A"]
+        case "b":
+            toReturn = [11: "B", 1: "C#", 3: "D#", 4: "E", 6: "F#", 8: "G#", 10: "A#"]
+        case "cb":
+            toReturn = [11: "Cb", 1: "Db", 3: "Eb", 4: "Fb", 6: "Gb", 8: "Ab", 10: "Bb"]
         default:
             break
         }
@@ -272,6 +376,7 @@ extension Scale: CustomStringConvertible {
     }
     
     private func resolveName() -> String {
+        
         switch self.notes[0].value {
         case 0:
             return "C"
@@ -305,8 +410,8 @@ extension Scale: CustomStringConvertible {
     
     
     var description: String {
-        let toPrint = prepareToPrint()
-        return toPrint.sorted { $0.key < $1.key }.map { $0.value }.joined(separator: "-")
+        let keyMap = prepareToPrint()
+        return self.notes.map { keyMap[$0.value]! }.joined(separator: "-")
     }
     
 }
