@@ -381,7 +381,65 @@ extension Chord: Equatable, CustomStringConvertible {
     
     var description: String {
         let keyMap = self.baseScale.resolveKeyMapping()
-        return "\(self.name): \(self.notes.map { keyMap[$0.value] ?? "" }.joined(separator: "-"))"
+        return "\(self.name): \(self.notes.map { keyMap[$0.value] ?? self.resolveExtraDegrees(forValue: $0.value) }.joined(separator: "-"))"
+    }
+    
+    func resolveExtraDegrees(forValue value: Int) -> String {
+        
+        let keyMap = self.baseScale.resolveKeyMapping()
+        
+        // TODO: finish this
+        
+        switch self.classification {
+        case .dominantSeventh:
+            // TODO: this is not right, only works for when 7 should be flat (C -> Bb, what about G? should be F, not F#b)
+            return "\(keyMap[value + 1]!)b"
+        case .majorSeventh:
+            return "\(keyMap[value + 1]!)"
+        case .dominantNinth:
+            return "\(keyMap[value + 1]!)b"
+        case .majorNinth:
+            return ""
+        case .eleventh:
+            return ""
+        case .thirteenth:
+            return ""
+        case .sevenSusFour:
+            return ""
+        case .nineSusFour:
+            return ""
+        case .diminished:
+            return ""
+        case .diminishedSeventh:
+            return ""
+        case .minorSeventhFlatFive, .halfDiminished:
+            return ""
+        case .augmented:
+            return ""
+        case .augmentedSeventh:
+            return ""
+        case .sevenPlusFive:
+            return ""
+        case .sevenSharpFive:
+            return ""
+        case .sevenMinusFive:
+            return ""
+        case .sevenFlatFive:
+            return ""
+        case .sevenMinusNine:
+            return ""
+        case .sevenFlatNine:
+            return ""
+        case .sevenPlusNine:
+            return ""
+        case .sevenSharpNine:
+            return ""
+        case .unknown:
+            return ""
+        default:
+            print("ERROR: shouldn't be here")
+            fatalError()
+        }
     }
 }
 

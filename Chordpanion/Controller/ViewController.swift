@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         let Cmaj = Scale(in: C, ofType: .major)
         print("Cmaj scale: \(Cmaj)")
         
-        let Cmaj_chord = Chord(inKey: Cmaj, offDegree: .I, quality: .halfDiminished)!
+        let Cmaj_chord = Chord(inKey: Cmaj, offDegree: .I, quality: .dominantSeventh)!
         print(Cmaj_chord)
     }
 
