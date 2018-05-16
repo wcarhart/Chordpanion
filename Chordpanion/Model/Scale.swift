@@ -315,7 +315,7 @@ struct Scale {
 
 extension Scale: CustomStringConvertible {
     
-    private func prepareToPrint() -> [Int: String] {
+    func resolveKeyMapping() -> [Int: String] {
         var nameToUse: String
         var toReturn = [Int: String]()
 
@@ -375,7 +375,7 @@ extension Scale: CustomStringConvertible {
         return toReturn
     }
     
-    private func resolveName() -> String {
+    func resolveName() -> String {
         
         switch self.notes[0].value {
         case 0:
@@ -410,7 +410,7 @@ extension Scale: CustomStringConvertible {
     
     
     var description: String {
-        let keyMap = prepareToPrint()
+        let keyMap = resolveKeyMapping()
         return self.notes.map { keyMap[$0.value]! }.joined(separator: "-")
     }
     

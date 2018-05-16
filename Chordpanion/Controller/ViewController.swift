@@ -13,15 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let Cb = Note(name: "Cb")!
-        print("Cb: \(Cb.value)")
+        let C = Note(name: "C")!
+        print("C: \(C.value)")
         
-        let Cbmaj_scaleDetect = Scale(in: Cb, ofType: .major)
-        print("Cbmaj (key detected) scale: \(Cbmaj_scaleDetect)")
+        let Cmaj = Scale(in: C, ofType: .major)
+        print("Cmaj scale: \(Cmaj)")
         
-        let Cbmaj_scaleNoDetect = Scale(inKeyNamed: "Cb", ofType: .major)
-        print("Cbmaj (key specified) scale: \(Cbmaj_scaleNoDetect)")
-        
+        let Cmaj_chord = Chord(inKey: Cmaj, offDegree: .I, quality: .halfDiminished)!
+        print(Cmaj_chord)
     }
 
 }

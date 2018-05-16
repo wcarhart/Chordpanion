@@ -65,7 +65,10 @@ struct Progression {
     }
     
     mutating func borrow(fromKey key: Scale, degree: ScaleDegree, quality: ChordClassification, replacingChordAt index: Int) {
-        guard index < self.chords.count else { print("ERROR: selected index greater than number of chords in progression"); fatalError("Selected index greater than number of chords in progression") }
+        guard index < self.chords.count else {
+            print("ERROR: selected index greater than number of chords in progression")
+            fatalError("Selected index greater than number of chords in progression")
+        }
         guard let chord = Chord(inKey: key, offDegree: degree, quality: quality) else { print("ERROR: invalid chord"); fatalError("Invalid chord") }
         self.chords[index] = chord
     }
@@ -83,6 +86,6 @@ struct Progression {
 
 extension Progression: CustomStringConvertible {
     var description: String {
-        return self.chords.enumerated().map { String("Chord \($0): \($1)") }.joined(separator: "\n")
+        return self.chords.enumerated().map { String("Chord \($0 + 1): \($1)") }.joined(separator: "\n")
     }
 }

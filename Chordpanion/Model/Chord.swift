@@ -108,9 +108,10 @@ struct Chord {
         self.notes = []
         self.baseScale = key
         self.classification = quality
+        self.name = ""
         
         // TODO: finish name detection
-        self.name = ""
+        self.name = "\(key.resolveName())\(abbreviate())"
         
         switch degree {
         case .I, .i:
@@ -147,6 +148,83 @@ struct Chord {
             self.notes.rotate(by: 3)
         }
         
+    }
+    
+    private func abbreviate() -> String {
+        switch self.classification {
+        case .major:
+            return ""
+        case .minor:
+            return "m"
+        case .fifth:
+            return "5"
+        case .sixth:
+            return "6"
+        case .minorSixth:
+            return "m6"
+        case .sixAddNine:
+            return "6/9"
+        case .dominantSeventh:
+            return "7"
+        case .minorSeventh:
+            return "m7"
+        case .majorSeventh:
+            return "maj7"
+        case .union:
+            return "U"
+        case .dominantNinth:
+            return "9"
+        case .minorNinth:
+            return "m9"
+        case .majorNinth:
+            return "maj9"
+        case .eleventh:
+            return "11"
+        case .thirteenth:
+            return "13"
+        case .addNine:
+            return "add9"
+        case .addTwo:
+            return "add2"
+        case .susTwo:
+            return "sus2"
+        case .susFour:
+            return "sus4"
+        case .sustained:
+            return "sus"
+        case .sevenSusFour:
+            return "7sus4"
+        case .nineSusFour:
+            return "9sus4"
+        case .diminished:
+            return "dim"
+        case .diminishedSeventh:
+            return "dim7"
+        case .minorSeventhFlatFive, .halfDiminished:
+            return "m7b5"
+        case .augmented:
+            return "aug"
+        case .augmentedSeventh:
+            return "aug7"
+        case .sevenPlusFive:
+            return "7+5"
+        case .sevenSharpFive:
+            return "7#5"
+        case .sevenMinusFive:
+            return "7-5"
+        case .sevenFlatFive:
+            return "7b7"
+        case .sevenMinusNine:
+            return "7-9"
+        case .sevenFlatNine:
+            return "7b9"
+        case .sevenPlusNine:
+            return "7+9"
+        case .sevenSharpNine:
+            return "7#9"
+        case .unknown:
+            return ""
+        }
     }
     
     private mutating func buildChord(ofOff key: Note, ofType classification: ChordClassification) {
@@ -302,7 +380,8 @@ extension Chord: Equatable, CustomStringConvertible {
     }
     
     var description: String {
-        return self.notes.map { String($0.value) }.joined(separator: "-")
+        let keyMap = self.baseScale.resolveKeyMapping()
+        return "\(self.name): \(self.notes.map { keyMap[$0.value] ?? "" }.joined(separator: "-"))"
     }
 }
 
@@ -316,6 +395,7 @@ extension Array {
         reversed(start: positions, end: (size ?? count) - 1)
         reversed(start: 0, end: (size ?? count) - 1)
     }
+    
     mutating func reversed(start: Int, end: Int) {
         guard start >= 0 && end < count && start < end else {
             return
