@@ -21,7 +21,7 @@
                 <outlet property="buttonCsDb" destination="IF5-dm-RtF" id="on8-0x-Lge"/>
                 <outlet property="buttonD" destination="Awy-9Z-Reh" id="3Vb-nd-Q1E"/>
                 <outlet property="buttonDsEb" destination="BLY-ZT-KhH" id="UBa-bi-dv1"/>
-                <outlet property="buttonE" destination="hTU-ef-nk5" id="d6m-pp-ZjI"/>
+                <outlet property="buttonE" destination="ZY1-ED-Fsd" id="daO-d0-eno"/>
                 <outlet property="buttonF" destination="KND-cO-1ME" id="hpJ-DR-aEy"/>
                 <outlet property="buttonFsGb" destination="122-Iq-hZX" id="PTU-tU-rk2"/>
                 <outlet property="buttonG" destination="aU9-kz-Cba" id="eiY-Xn-HXi"/>
@@ -34,7 +34,7 @@
                 <outlet property="keyCsDb" destination="Aaw-Hr-ZmG" id="rMS-KT-XwO"/>
                 <outlet property="keyD" destination="wsJ-sB-1P4" id="A7l-Vy-Gpr"/>
                 <outlet property="keyDsEb" destination="Y1l-cq-yGa" id="26T-IH-0Sy"/>
-                <outlet property="keyE" destination="ZY1-ED-Fsd" id="6uh-Be-wtr"/>
+                <outlet property="keyE" destination="hTU-ef-nk5" id="wFX-hZ-ZnK"/>
                 <outlet property="keyF" destination="irJ-kR-W0v" id="lhs-GX-uyn"/>
                 <outlet property="keyFsGb" destination="BjT-YI-2Ub" id="fV3-LP-iEv"/>
                 <outlet property="keyG" destination="uef-mp-nRA" id="nR7-vg-JWi"/>

@@ -15,7 +15,7 @@ class PianoView: UIView {
     
     @IBOutlet weak var keyC: UIView!
     @IBOutlet weak var keyD: UIView!
-    @IBOutlet weak var keyE: UIButton!
+    @IBOutlet weak var keyE: UIView!
     @IBOutlet weak var keyF: UIView!
     @IBOutlet weak var keyG: UIView!
     @IBOutlet weak var keyA: UIView!
@@ -28,7 +28,7 @@ class PianoView: UIView {
     
     @IBOutlet weak var buttonC: UIButton!
     @IBOutlet weak var buttonD: UIButton!
-    @IBOutlet weak var buttonE: UIView!
+    @IBOutlet weak var buttonE: UIButton!
     @IBOutlet weak var buttonF: UIButton!
     @IBOutlet weak var buttonG: UIButton!
     @IBOutlet weak var buttonA: UIButton!

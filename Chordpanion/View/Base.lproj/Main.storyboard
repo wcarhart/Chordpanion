@@ -52,6 +52,9 @@
                         <viewLayoutGuide key="safeArea" id="hRy-Kp-U1a"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="gdT-xN-mIU"/>
+                    <connections>
+                        <outlet property="pianoView" destination="eRr-DD-2mM" id="grj-Zk-oDQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLS-RR-Fmk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
