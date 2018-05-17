@@ -9,7 +9,7 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,14 +42,11 @@ class LoadingViewController: UIViewController {
         let Cdim = Chord(inKey: Cmaj, offDegree: .I, quality: .diminished)!
         print(Cdim)
         
-        
-        let pianoView = PianoView()
-        pianoView.heightAnchor.constraint(equalToConstant: 200.0)
-        pianoView.widthAnchor.constraint(equalToConstant: 375.0)
-        self.view.addSubview(pianoView)
-        pianoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
-        pianoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
-        pianoView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        performSegue(withIdentifier: "load", sender: nil)
     }
 
 }

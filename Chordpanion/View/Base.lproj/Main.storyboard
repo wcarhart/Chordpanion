@@ -20,6 +20,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="I8H-ha-kPp"/>
                     </view>
+                    <connections>
+                        <segue destination="sCW-6t-I0F" kind="show" identifier="load" id="RFu-EN-lLM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeF-se-ax7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -32,7 +35,20 @@
                     <view key="view" contentMode="scaleToFill" id="u9I-du-chp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-DD-2mM" customClass="PianoView" customModule="Chordpanion" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="233" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="APO-w6-2qz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eRr-DD-2mM" firstAttribute="centerY" secondItem="u9I-du-chp" secondAttribute="centerY" id="6aG-lY-sog"/>
+                            <constraint firstItem="hRy-Kp-U1a" firstAttribute="trailing" secondItem="eRr-DD-2mM" secondAttribute="trailing" id="ICk-Gx-Ly8"/>
+                            <constraint firstItem="eRr-DD-2mM" firstAttribute="leading" secondItem="hRy-Kp-U1a" secondAttribute="leading" id="Mmi-6s-UDo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hRy-Kp-U1a"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="gdT-xN-mIU"/>
@@ -124,6 +140,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sCW-6t-I0F" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AVb-Z2-crl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

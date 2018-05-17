@@ -16,8 +16,6 @@
 		727C067120AD334600ECDDDB /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C067020AD334600ECDDDB /* LoadingViewController.swift */; };
 		727C067320AD36B100ECDDDB /* ProgressionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 727C067220AD36B100ECDDDB /* ProgressionCell.xib */; };
 		727C067720AD37C800ECDDDB /* ProgressionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */; };
-		727C067920AD3AC200ECDDDB /* PianoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 727C067820AD3AC200ECDDDB /* PianoView.xib */; };
-		727C067B20AD3AD800ECDDDB /* PianoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C067A20AD3AD800ECDDDB /* PianoView.swift */; };
 		72949A16208C1834001D0911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A15208C1834001D0911 /* AppDelegate.swift */; };
 		72949A1B208C1834001D0911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72949A19208C1834001D0911 /* Main.storyboard */; };
 		72949A1D208C1837001D0911 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72949A1C208C1837001D0911 /* Assets.xcassets */; };
@@ -28,6 +26,11 @@
 		72949A48208C1D09001D0911 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A47208C1D09001D0911 /* Chord.swift */; };
 		72949A4A208C1D11001D0911 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A49208C1D11001D0911 /* Scale.swift */; };
 		72949A50208C74CD001D0911 /* Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A4F208C74CD001D0911 /* Progression.swift */; };
+		72D6F6F420ADD7A4006F7A94 /* PianoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D6F6F320ADD7A4006F7A94 /* PianoView.xib */; };
+		72D6F6F620ADD7B4006F7A94 /* PianoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6F6F520ADD7B4006F7A94 /* PianoView.swift */; };
+		D48D7361FE481C41C8163FB4 /* Pods_ChordpanionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6F62291F25A356013CA2CA /* Pods_ChordpanionTests.framework */; };
+		F397320751F1766DC5AD815D /* Pods_Chordpanion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7503DEF6C4C715654712DE7 /* Pods_Chordpanion.framework */; };
+		F9F4EBE08C3869E81B8873C2 /* Pods_ChordpanionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECFE1AE292CF351D1C2EABE /* Pods_ChordpanionUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05354B45E594E2297517D4AB /* Pods-ChordpanionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChordpanionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChordpanionTests/Pods-ChordpanionTests.release.xcconfig"; sourceTree = "<group>"; };
+		3289DF0CE276A0F1C94C5C1F /* Pods-ChordpanionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChordpanionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChordpanionUITests/Pods-ChordpanionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3A6F62291F25A356013CA2CA /* Pods_ChordpanionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChordpanionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		727C066420AD317900ECDDDB /* NewProgressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProgressionViewController.swift; sourceTree = "<group>"; };
 		727C066620AD318F00ECDDDB /* NewMashupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMashupViewController.swift; sourceTree = "<group>"; };
 		727C066820AD31A100ECDDDB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -57,8 +63,6 @@
 		727C067020AD334600ECDDDB /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		727C067220AD36B100ECDDDB /* ProgressionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressionCell.xib; sourceTree = "<group>"; };
 		727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionTableViewCell.swift; sourceTree = "<group>"; };
-		727C067820AD3AC200ECDDDB /* PianoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoView.xib; sourceTree = "<group>"; };
-		727C067A20AD3AD800ECDDDB /* PianoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoView.swift; sourceTree = "<group>"; };
 		72949A12208C1834001D0911 /* Chordpanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chordpanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72949A15208C1834001D0911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72949A1A208C1834001D0911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +79,14 @@
 		72949A47208C1D09001D0911 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		72949A49208C1D11001D0911 /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		72949A4F208C74CD001D0911 /* Progression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progression.swift; sourceTree = "<group>"; };
+		72D6F6F320ADD7A4006F7A94 /* PianoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoView.xib; sourceTree = "<group>"; };
+		72D6F6F520ADD7B4006F7A94 /* PianoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoView.swift; sourceTree = "<group>"; };
+		7ECFE1AE292CF351D1C2EABE /* Pods_ChordpanionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChordpanionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0B2205358555FBE4FF6AF1 /* Pods-Chordpanion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chordpanion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chordpanion/Pods-Chordpanion.debug.xcconfig"; sourceTree = "<group>"; };
+		B7503DEF6C4C715654712DE7 /* Pods_Chordpanion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chordpanion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3C6E603AF38833DA5F47865 /* Pods-ChordpanionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChordpanionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChordpanionTests/Pods-ChordpanionTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DA376AD10A86B7CF844C866D /* Pods-ChordpanionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChordpanionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChordpanionUITests/Pods-ChordpanionUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E79C4E62A8866A49A1CC5E17 /* Pods-Chordpanion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chordpanion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chordpanion/Pods-Chordpanion.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F397320751F1766DC5AD815D /* Pods_Chordpanion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D48D7361FE481C41C8163FB4 /* Pods_ChordpanionTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F4EBE08C3869E81B8873C2 /* Pods_ChordpanionUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +124,8 @@
 				72949A29208C1837001D0911 /* ChordpanionTests */,
 				72949A34208C1837001D0911 /* ChordpanionUITests */,
 				72949A13208C1834001D0911 /* Products */,
+				74EC9188D3806150CA2A38F3 /* Pods */,
+				AC11B948A6DB2B03C571BFE1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,7 +186,7 @@
 				72949A19208C1834001D0911 /* Main.storyboard */,
 				72949A1E208C1837001D0911 /* LaunchScreen.storyboard */,
 				727C067220AD36B100ECDDDB /* ProgressionCell.xib */,
-				727C067820AD3AC200ECDDDB /* PianoView.xib */,
+				72D6F6F320ADD7A4006F7A94 /* PianoView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,9 +203,32 @@
 				727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */,
 				727C067020AD334600ECDDDB /* LoadingViewController.swift */,
 				727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */,
-				727C067A20AD3AD800ECDDDB /* PianoView.swift */,
+				72D6F6F520ADD7B4006F7A94 /* PianoView.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		74EC9188D3806150CA2A38F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC0B2205358555FBE4FF6AF1 /* Pods-Chordpanion.debug.xcconfig */,
+				E79C4E62A8866A49A1CC5E17 /* Pods-Chordpanion.release.xcconfig */,
+				C3C6E603AF38833DA5F47865 /* Pods-ChordpanionTests.debug.xcconfig */,
+				05354B45E594E2297517D4AB /* Pods-ChordpanionTests.release.xcconfig */,
+				DA376AD10A86B7CF844C866D /* Pods-ChordpanionUITests.debug.xcconfig */,
+				3289DF0CE276A0F1C94C5C1F /* Pods-ChordpanionUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AC11B948A6DB2B03C571BFE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7503DEF6C4C715654712DE7 /* Pods_Chordpanion.framework */,
+				3A6F62291F25A356013CA2CA /* Pods_ChordpanionTests.framework */,
+				7ECFE1AE292CF351D1C2EABE /* Pods_ChordpanionUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,10 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72949A3A208C1837001D0911 /* Build configuration list for PBXNativeTarget "Chordpanion" */;
 			buildPhases = (
+				EC9378C224BF74D2B0ED9641 /* [CP] Check Pods Manifest.lock */,
 				72949A0E208C1834001D0911 /* Sources */,
 				72949A0F208C1834001D0911 /* Frameworks */,
 				72949A10208C1834001D0911 /* Resources */,
 				72949A51208D3259001D0911 /* ShellScript */,
+				177ED441B57120DE1094B28B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,6 +258,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72949A3D208C1837001D0911 /* Build configuration list for PBXNativeTarget "ChordpanionTests" */;
 			buildPhases = (
+				84B001C2537F1E6F850DC2B3 /* [CP] Check Pods Manifest.lock */,
 				72949A22208C1837001D0911 /* Sources */,
 				72949A23208C1837001D0911 /* Frameworks */,
 				72949A24208C1837001D0911 /* Resources */,
@@ -234,6 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72949A40208C1837001D0911 /* Build configuration list for PBXNativeTarget "ChordpanionUITests" */;
 			buildPhases = (
+				B7F30600E938AFB550827C96 /* [CP] Check Pods Manifest.lock */,
 				72949A2D208C1837001D0911 /* Sources */,
 				72949A2E208C1837001D0911 /* Frameworks */,
 				72949A2F208C1837001D0911 /* Resources */,
@@ -297,7 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72949A20208C1837001D0911 /* LaunchScreen.storyboard in Resources */,
-				727C067920AD3AC200ECDDDB /* PianoView.xib in Resources */,
+				72D6F6F420ADD7A4006F7A94 /* PianoView.xib in Resources */,
 				72949A1D208C1837001D0911 /* Assets.xcassets in Resources */,
 				72949A1B208C1834001D0911 /* Main.storyboard in Resources */,
 				727C067320AD36B100ECDDDB /* ProgressionCell.xib in Resources */,
@@ -321,6 +365,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		177ED441B57120DE1094B28B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Chordpanion/Pods-Chordpanion-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chordpanion/Pods-Chordpanion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		72949A51208D3259001D0911 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +395,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:|DEBUG:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		84B001C2537F1E6F850DC2B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChordpanionTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7F30600E938AFB550827C96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChordpanionUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC9378C224BF74D2B0ED9641 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Chordpanion-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -351,7 +467,7 @@
 				72949A4A208C1D11001D0911 /* Scale.swift in Sources */,
 				727C066520AD317900ECDDDB /* NewProgressionViewController.swift in Sources */,
 				727C066B20AD327D00ECDDDB /* ListViewController.swift in Sources */,
-				727C067B20AD3AD800ECDDDB /* PianoView.swift in Sources */,
+				72D6F6F620ADD7B4006F7A94 /* PianoView.swift in Sources */,
 				727C066720AD318F00ECDDDB /* NewMashupViewController.swift in Sources */,
 				727C067120AD334600ECDDDB /* LoadingViewController.swift in Sources */,
 				727C066F20AD32AC00ECDDDB /* SettingsViewController.swift in Sources */,
@@ -525,15 +641,13 @@
 		};
 		72949A3B208C1837001D0911 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC0B2205358555FBE4FF6AF1 /* Pods-Chordpanion.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = Chordpanion/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.Chordpanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -543,15 +657,13 @@
 		};
 		72949A3C208C1837001D0911 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E79C4E62A8866A49A1CC5E17 /* Pods-Chordpanion.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = Chordpanion/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.Chordpanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -561,17 +673,14 @@
 		};
 		72949A3E208C1837001D0911 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3C6E603AF38833DA5F47865 /* Pods-ChordpanionTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -582,17 +691,14 @@
 		};
 		72949A3F208C1837001D0911 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05354B45E594E2297517D4AB /* Pods-ChordpanionTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -603,16 +709,13 @@
 		};
 		72949A41208C1837001D0911 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA376AD10A86B7CF844C866D /* Pods-ChordpanionUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -623,16 +726,13 @@
 		};
 		72949A42208C1837001D0911 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3289DF0CE276A0F1C94C5C1F /* Pods-ChordpanionUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
