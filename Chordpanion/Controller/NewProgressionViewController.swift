@@ -31,6 +31,8 @@ class NewProgressionViewController: UIViewController {
     @IBOutlet weak var doubleQualityLabel0: UILabel!
     @IBOutlet weak var doubleQualityLabel1: UILabel!
     
+    @IBOutlet weak var submitLabel: UILabel!
+    
     let keys: [String: [Quality]] = [
         "C": [.major, .minor],
         "G": [.major, .minor],
@@ -81,8 +83,30 @@ class NewProgressionViewController: UIViewController {
         displayNote = ""
         selectedNote = ""
         
+        configureButtonUI()
+        
         setupKeyButtons()
         updateButtons(withCommand: 0)
+    }
+    
+    
+    func configureButtonUI() {
+        self.oneEnharmonicLabel.layer.backgroundColor = FlatOrange().cgColor
+        self.oneEnharmonicLabel.layer.cornerRadius = 10
+        self.twoEnharmonicsLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.twoEnharmonicsLabel0.layer.cornerRadius = 10
+        self.twoEnharmonicsLabel1.layer.backgroundColor = FlatGray().cgColor
+        self.twoEnharmonicsLabel1.layer.cornerRadius = 10
+        
+        self.singleQualityLabel.layer.backgroundColor = FlatOrange().cgColor
+        self.singleQualityLabel.layer.cornerRadius = 10
+        self.doubleQualityLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel0.layer.cornerRadius = 10
+        self.doubleQualityLabel1.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel1.layer.cornerRadius = 10
+        
+        self.submitLabel.layer.backgroundColor = FlatSkyBlue().cgColor
+        self.submitLabel.layer.cornerRadius = 10
     }
     
     func updateUI() {
@@ -153,6 +177,11 @@ class NewProgressionViewController: UIViewController {
         self.pianoView.keyFsGb.backgroundColor = FlatBlack()
         self.pianoView.keyGsAb.backgroundColor = FlatBlack()
         self.pianoView.keyAsBb.backgroundColor = FlatBlack()
+        
+        self.doubleQualityLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel1.layer.backgroundColor = FlatGray().cgColor
+        self.twoEnharmonicsLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.twoEnharmonicsLabel1.layer.backgroundColor = FlatGray().cgColor
     }
     
     func updateButtons(withCommand command: Int) {
@@ -285,21 +314,33 @@ class NewProgressionViewController: UIViewController {
 
     @IBAction func twoEnharmonicsButton0Pressed(_ sender: UIButton) {
         selectedNote = displayNote
+        self.twoEnharmonicsLabel0.layer.backgroundColor = FlatOrange().cgColor
+        self.twoEnharmonicsLabel1.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel1.layer.backgroundColor = FlatGray().cgColor
         updateButtons(withCommand: 2)
     }
     
     @IBAction func twoEnharmonicsButton1Pressed(_ sender: UIButton) {
         selectedNote = enharmonicEquivalents[displayNote]
+        self.twoEnharmonicsLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.twoEnharmonicsLabel1.layer.backgroundColor = FlatOrange().cgColor
+        self.doubleQualityLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel1.layer.backgroundColor = FlatGray().cgColor
         updateButtons(withCommand: 2)
     }
     
     @IBAction func majorButtonPressed(_ sender: UIButton) {
         selectedQuality = .major
+        self.doubleQualityLabel0.layer.backgroundColor = FlatOrange().cgColor
+        self.doubleQualityLabel1.layer.backgroundColor = FlatGray().cgColor
         updateButtons(withCommand: 3)
     }
     
     @IBAction func minorButtonPressed(_ sender: UIButton) {
         selectedQuality = .minor
+        self.doubleQualityLabel0.layer.backgroundColor = FlatGray().cgColor
+        self.doubleQualityLabel1.layer.backgroundColor = FlatOrange().cgColor
         updateButtons(withCommand: 3)
     }
     
