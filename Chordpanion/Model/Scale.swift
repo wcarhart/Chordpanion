@@ -290,6 +290,26 @@ struct Scale {
         }
     }
     
+    func invert() -> Scale {
+        switch self.classification {
+        case .major, .mode_ionian:
+            return Scale(in: self.notes[0], ofType: .minor_natural)
+        case .minor_natural, .mode_aeolian, .minor_melodic, .minor_harmonic:
+            return Scale(in: self.notes[0], ofType: .major)
+        case .pentatonic_1_major:
+            return Scale(in: self.notes[0], ofType: .pentatonic_1_minor)
+        case .pentatonic_2_major:
+            return Scale(in: self.notes[0], ofType: .pentatonic_2_minor)
+        case .pentatonic_1_minor:
+            return Scale(in: self.notes[0], ofType: .pentatonic_1_major)
+        case .pentatonic_2_minor:
+            return Scale(in: self.notes[0], ofType: .pentatonic_2_major)
+        default:
+            print("ERROR: could not invert scale - please make sure scale can be inverted (only available for major and minor scales")
+            fatalError()
+        }
+    }
+    
     func note(at index: Int) -> Note? {
         return index <= notes.count ? notes[index] : nil
     }
@@ -322,11 +342,45 @@ extension Scale: CustomStringConvertible {
         if let name = self.name {
             nameToUse = name
         } else {
-            print("WARNING: no key specified, attempting to detect key...")
             nameToUse = resolveName()
         }
         
-        // TODO: need to handle minor cases, just move key up 3 half steps and use logic below
+        if self.classification == .minor_harmonic || self.classification == .minor_natural || self.classification == .minor_melodic || self.classification == .mode_aeolian {
+            switch nameToUse.lowercased() {
+            case "a":
+                nameToUse = "C"
+            case "e":
+                nameToUse = "G"
+            case "b":
+                nameToUse = "D"
+            case "f#":
+                nameToUse = "A"
+            case "c#":
+                nameToUse = "E"
+            case "g#":
+                nameToUse = "B"
+            case "ab":
+                nameToUse = "Cb"
+            case "d#":
+                nameToUse = "F#"
+            case "eb":
+                nameToUse = "Gb"
+            case "a#":
+                nameToUse = "C#"
+            case "bb":
+                nameToUse = "Db"
+            case "f":
+                nameToUse = "Ab"
+            case "c":
+                nameToUse = "Eb"
+            case "g":
+                nameToUse = "Bb"
+            case "d":
+                nameToUse = "F"
+            default:
+                break
+            }
+        }
 
         switch nameToUse.lowercased() {
         case "c":

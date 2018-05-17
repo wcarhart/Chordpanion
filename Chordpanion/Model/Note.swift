@@ -47,22 +47,6 @@ struct Note {
         }
     }
     
-    mutating func doubleFlat() {
-        self.value -= 2
-    }
-    
-    mutating func flat() {
-        self.value -= 1
-    }
-    
-    mutating func sharp() {
-        self.value += 1
-    }
-    
-    mutating func doubleSharp() {
-        self.value += 2
-    }
-    
     func halfStep() -> Note {
         return Note(value: (self.value + 1) % 12)
     }
