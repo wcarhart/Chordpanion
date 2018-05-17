@@ -60,596 +60,387 @@ enum ChordClassification {
     case unknown
 }
 
-struct Chord: CustomStringConvertible, Equatable {
+enum Inversion {
+    case root
+    case first
+    case second
+    case third
+}
+
+struct Chord {
     var notes: [Note]
+    var baseScale: Scale
     var classification: ChordClassification
+    
     private (set) var name: String
-    var bassNote: Note?
     
-    init(in key: Note, ofType chord: ChordClassification) {
-        notes = []
-        classification = chord
-        switch chord {
-        case .major:
-            name = key.name
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .minor:
-            name = "\(key.name)m"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .fifth:
-            name = "\(key.name)5"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond().augmentedSecond().halfStep()
-            notes.append(note)
-        case .sixth:
-            name = "\(key.name)6"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .minorSixth:
-            name = "\(key.name)m6"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .sixAddNine:
-            name = "\(key.name)6/9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-        case .dominantSeventh:
-            name = "\(key.name)7"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .minorSeventh:
-            name = "\(key.name)m7"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .majorSeventh:
-            name = "\(key.name)maj7"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .union:
-            name = "\(key.name)u"
-            notes.append(key)
-            notes.append(key)
-        case .dominantNinth:
-            name = "\(key.name)9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .minorNinth:
-            name = "\(key.name)m9"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .majorNinth:
-            name = "\(key.name)maj9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .eleventh:
-            name = "\(key.name)11"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .thirteenth:
-            name = "\(key.name)13"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .addTwo:
-            name = "\(key.name)add2"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .addNine:
-            name = "\(key.name)add9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = key.wholeStep()
-            notes.append(note)
-        case .susTwo:
-            name = "\(key.name)sus2"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-        case .susFour:
-            name = "\(key.name)sus4"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .sustained:
-            name = "\(key.name)sus"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .sevenSusFour:
-            name = "\(key.name)7sus4"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .nineSusFour:
-            name = "\(key.name)9sus4"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .diminished:
-            name = "\(key.name)dim"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .diminishedSeventh:
-            name = "\(key.name)dim7"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .minorSeventhFlatFive:
-            name = "\(key.name)m7b5"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .halfDiminished:
-            name = "\(key.name)∅"
-            var note = key
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .augmented:
-            name = "\(key.name)aug"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .augmentedSeventh:
-            name = "\(key.name)aug7"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .sevenSharpFive:
-            name = "\(key.name)7#5"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .sevenPlusFive:
-            name = "\(key.name)7+5"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-        case .sevenFlatFive:
-            name = "\(key.name)7b5"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .sevenMinusFive:
-            name = "\(key.name)7-5"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.wholeStep()
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-        case .sevenFlatNine:
-            name = "\(key.name)7b9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .sevenMinusNine:
-            name = "\(key.name)7-9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-        case .sevenSharpNine:
-            name = "\(key.name)7#9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-        case .sevenPlusNine:
-            name = "\(key.name)7+9"
-            var note = key
-            notes.append(note)
-            note = note.wholeStep().wholeStep()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond()
-            notes.append(note)
-            note = note.augmentedSecond().wholeStep()
-            notes.append(note)
-        case .unknown:
-            name = ""
-            break
+    init?(inKey key: Scale, offDegree degree: ScaleDegree) {
+        
+        var quality: ChordClassification
+        
+        switch degree {
+        case .I, .II, .III, .IV, .V, .VI, .VII:
+            guard key.classification == .major else {
+                print("ERROR: major scale degree requires a major scale")
+                return nil
+            }
+            quality = .major
+        case .i, .ii, .iii, .iv, .v, .vi, .vii:
+            guard key.classification != .minor_natural || key.classification != .minor_melodic || key.classification != .minor_harmonic else {
+                print("ERROR: minor scale degree requires a minor scale")
+                return nil
+            }
+            quality = .minor
         }
+        
+        guard let chord = Chord(inKey: key, offDegree: degree, quality: quality) else { return nil }
+        self = chord
     }
     
-    init?(in key: Note, ofType scale: ScaleClassification, withStructure notes: String) {
+    init?(inKey key: Scale, offDegree degree: ScaleDegree, quality: ChordClassification) {
+        guard let chord = Chord(inKey: key, offDegree: degree, quality: quality, inversion: .root) else { return nil }
+        self = chord
+    }
+    
+    init?(inKey key: Scale, offDegree degree: ScaleDegree, quality: ChordClassification, inversion: Inversion) {
+        
+        // b/c of silly Swift compiler issues
         self.notes = []
-        name = ""
-        classification = .unknown
-        let baseScale = Scale(in: key, ofType: scale)
+        self.baseScale = key
+        self.classification = quality
+        self.name = ""
         
-        var modifier: String = ""
-        for char in notes {
-            switch char {
-            case "#":
-                modifier = "#"
-            case "b":
-                modifier = "b"
-            case " ":
-                continue
-            default:
-                guard var index = Int(String(char)) else { return nil }
-                index = index % 12
-                var note = baseScale.note(at: index - 1)!
-                
-                if modifier == "#" {
-                    note.sharp()
-                } else if modifier == "b" {
-                    note.flat()
-                } else if modifier == "##" || modifier == "x" {
-                    note.doubleSharp()
-                } else if modifier == "bb" {
-                    note.doubleFlat()
-                }
-                
-                self.notes.append(note)
-                modifier = ""
-            }
-        }
-        name = detectChordType(key: key)
-    }
-    
-    mutating func setBassNote(to note: Note) {
-        self.bassNote = note
-        self.name += "/\(self.bassNote?.name ?? "")"
-    }
-    
-    func detectChordType(key: Note) -> String {
-        var chord: Chord?
-        for scale in iterateEnum(ChordClassification.self) {
-            chord = Chord(in: key, ofType: scale)
-            if chord?.notes == self.notes {
-                return (chord?.name)!
-            }
-        }
-        return ""
-    }
-    
-    func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
-        var i = 0
-        return AnyIterator {
-            let next = withUnsafeBytes(of: &i) { $0.load(as: T.self) }
-            if next.hashValue != i { return nil }
-            i += 1
-            return next
-        }
-    }
-    
-    // returns true if successful
-    // returns false if failure
-    mutating func alter(with alterations: String, inKey key: Note, onScale scale: ScaleClassification) -> Bool{
-        let baseScale = Scale(in: key, ofType: scale)
-        var modifier = ""
+        // TODO: finish name detection
+        self.name = "\(key.resolveName())\(abbreviate())"
         
-        for char in alterations {
-            switch char {
-            case "#":
-                modifier = "#"
-            case "b":
-                modifier = "b"
-            case " ":
-                continue
-            default:
-                guard var index = Int(String(char)) else { return false }
-                index = index % 12
-                var note = baseScale.note(at: index - 1)!
-                
-                if modifier == "#" {
-                    note.sharp()
-                } else if modifier == "b" {
-                    note.flat()
-                } else if modifier == "##" || modifier == "x" {
-                    note.doubleSharp()
-                } else if modifier == "bb" {
-                    note.doubleFlat()
-                }
-                
-                let noteValues = self.notes.map( { $0.value })
-                if !noteValues.contains(note.value) {
-                    self.notes.append(note)
-                }
-                
-                modifier = ""
-            }
-        }
-        self.notes = self.notes.sorted()
-        name = detectChordType(key: key)
-        return true
-    }
-    
-    // first boolean: useSharps?
-    // true if major key of C, G, D, A, E, B, F#, C#
-    // false if major key of F, Bb, Eb, Ab, Db, Gb, Cb
-    //
-    // second boolean: flatSeventh?
-    func checkCircleOfFifths() -> (Bool, Bool) {
-        var key = self.notes[0]
-        var flatSeventh = false
-        
-        if self.classification == .minor || self.classification == .minorSixth || self.classification == .minorSeventh || self.classification == .minorNinth || self.classification == .dominantSeventh || self.classification == .dominantNinth || self.classification == .eleventh || self.classification == .thirteenth || self.classification == .sevenSusFour || self.classification == .nineSusFour || self.classification == .diminished || self.classification == .diminishedSeventh || self.classification == .halfDiminished || self.classification == .minorSeventhFlatFive || self.classification == .sevenFlatFive || self.classification == .sevenMinusFive || self.classification == .sevenFlatNine || self.classification == .sevenMinusNine || self.classification == .sevenPlusNine || self.classification == .sevenSharpNine || self.classification == .sevenPlusFive || self.classification == .sevenSharpFive {
-            key = key.augmentedSecond()
+        switch degree {
+        case .I, .i:
+            guard let startingNote = key.note(at: 0) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
+        case .II, .ii:
+            guard let startingNote = key.note(at: 1) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
+        case .III, .iii:
+            guard let startingNote = key.note(at: 2) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
+        case .IV, .iv:
+            guard let startingNote = key.note(at: 3) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
+        case .V, .v:
+            guard let startingNote = key.note(at: 4) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
+        case .VI, .vi:
+            guard let startingNote = key.note(at: 5) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
+        case .VII, .vii:
+            guard let startingNote = key.note(at: 6) else { print("ERROR: invalid scale degree"); return nil }
+            buildChord(ofOff: startingNote, ofType: quality)
         }
         
-        /*
-        if self.classification == .augmented || self.classification == .augmentedSeventh || self.classification == .sevenPlusFive || self.classification == .sevenSharpFive {
-            flatSeventh = true
+        switch inversion {
+        case .root:
+            break
+        case .first:
+            self.notes.rotate(by: 1)
+        case .second:
+            self.notes.rotate(by: 2)
+        case .third:
+            self.notes.rotate(by: 3)
         }
-        */
         
-        if key.name == "C" || key.name == "G" || key.name == "D" || key.name == "A" || key.name == "E" || key.name == "B" || key.name == "F#" || key.name == "C#" {
-            return (true, flatSeventh)
-        } else {
-            return (false, flatSeventh)
+    }
+    
+    private func abbreviate() -> String {
+        switch self.classification {
+        case .major:
+            return ""
+        case .minor:
+            return "m"
+        case .fifth:
+            return "5"
+        case .sixth:
+            return "6"
+        case .minorSixth:
+            return "m6"
+        case .sixAddNine:
+            return "6/9"
+        case .dominantSeventh:
+            return "7"
+        case .minorSeventh:
+            return "m7"
+        case .majorSeventh:
+            return "maj7"
+        case .union:
+            return "U"
+        case .dominantNinth:
+            return "9"
+        case .minorNinth:
+            return "m9"
+        case .majorNinth:
+            return "maj9"
+        case .eleventh:
+            return "11"
+        case .thirteenth:
+            return "13"
+        case .addNine:
+            return "add9"
+        case .addTwo:
+            return "add2"
+        case .susTwo:
+            return "sus2"
+        case .susFour:
+            return "sus4"
+        case .sustained:
+            return "sus"
+        case .sevenSusFour:
+            return "7sus4"
+        case .nineSusFour:
+            return "9sus4"
+        case .diminished:
+            return "dim"
+        case .diminishedSeventh:
+            return "dim7"
+        case .minorSeventhFlatFive, .halfDiminished:
+            return "m7b5"
+        case .augmented:
+            return "aug"
+        case .augmentedSeventh:
+            return "aug7"
+        case .sevenPlusFive:
+            return "7+5"
+        case .sevenSharpFive:
+            return "7#5"
+        case .sevenMinusFive:
+            return "7-5"
+        case .sevenFlatFive:
+            return "7b7"
+        case .sevenMinusNine:
+            return "7-9"
+        case .sevenFlatNine:
+            return "7b9"
+        case .sevenPlusNine:
+            return "7+9"
+        case .sevenSharpNine:
+            return "7#9"
+        case .unknown:
+            return ""
         }
     }
     
-    mutating func setName(to name: String) {
-        self.name = name
+    private mutating func buildChord(ofOff key: Note, ofType classification: ChordClassification) {
+        
+        let note = key
+        self.notes.append(note)
+        
+        switch classification {
+        // basic chords
+        case .major:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+        case .minor:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.P5))
+        case .fifth:
+            self.notes.append(key.interval(.P5))
+        case .sixth:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.M6))
+        case .minorSixth:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.M6))
+        case .sixAddNine:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.M6))
+            self.notes.append(key.interval(.M9))
+        case .dominantSeventh:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+        case .minorSeventh:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+        case .majorSeventh:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.M7))
+        case .union:
+            self.notes.append(key.interval(.P8))
+        case .dominantNinth:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.M9))
+        case .minorNinth:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.M9))
+        case .majorNinth:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.M7))
+            self.notes.append(key.interval(.M9))
+        case .eleventh:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.M9))
+            self.notes.append(key.interval(.P11))
+        case .thirteenth:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.M9))
+            self.notes.append(key.interval(.P11))
+            self.notes.append(key.interval(.M13))
+            
+        // add chords
+        case .addNine:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.M9))
+        case .addTwo:
+            self.notes.append(key.interval(.M2))
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+        case .susTwo:
+            self.notes.append(key.interval(.M2))
+            self.notes.append(key.interval(.P5))
+        case .susFour:
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
+        case .sustained:
+            self.notes.append(key.interval(.M2))
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
+        case .sevenSusFour:
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+        case .nineSusFour:
+            self.notes.append(key.interval(.P4))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.M9))
+            
+        // diminished chords
+        case .diminished:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.TT))
+        case .diminishedSeventh:
+            self.notes.append(key.interval(.m3))
+            self.notes.append(key.interval(.TT))
+            self.notes.append(key.interval(.M6))
+        case .minorSeventhFlatFive, .halfDiminished:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.TT))
+            self.notes.append(key.interval(.m7))
+            
+        // augmented
+        case .augmented:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.m6))
+        case .augmentedSeventh, .sevenPlusFive, .sevenSharpFive:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.m6))
+            self.notes.append(key.interval(.m7))
+        case .sevenMinusFive, .sevenFlatFive:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.TT))
+            self.notes.append(key.interval(.m7))
+        case .sevenMinusNine, .sevenFlatNine:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.m9))
+        case .sevenPlusNine, .sevenSharpNine:
+            self.notes.append(key.interval(.M3))
+            self.notes.append(key.interval(.P5))
+            self.notes.append(key.interval(.m7))
+            self.notes.append(key.interval(.m10))
+        case .unknown:
+            print("ERROR: could not classify chord")
+            fatalError("Could not classify chord")
+        }
+    }
+    
+}
+
+extension Chord: Equatable, CustomStringConvertible {
+    static func == (lhs: Chord, rhs: Chord) -> Bool {
+        return lhs.notes == rhs.notes
+    }
+    
+    func output() {
+        
     }
     
     var description: String {
-        let (useSharps, flatSeven): (Bool, Bool) = checkCircleOfFifths()
-        
-        // TODO: need to determine 7th step of scale and use flat instead of sharp for aug, aug7, 7+5, and 7#5 (currently halfway implemented)
-        
-        // TODO: make this more robust (account for bb, b, nat, #, ##)
-        
-        var toPrint: String = ""
-        for note in notes {
-            switch note.value {
-            case 0:
-                toPrint += "C "
-            case 1:
-                if useSharps {
-                    toPrint += "C# "
-                } else {
-                    toPrint += "Db "
-                }
-            case 2:
-                toPrint += "D "
-            case 3:
-                if useSharps {
-                    toPrint += "D# "
-                } else {
-                    toPrint += "Eb "
-                }
-            case 4:
-                toPrint += "E "
-            case 5:
-                toPrint += "F "
-            case 6:
-                if useSharps {
-                    toPrint += "F# "
-                } else {
-                    toPrint += "Gb "
-                }
-            case 7:
-                toPrint += "G "
-            case 8:
-                if useSharps {
-                    toPrint += "G# "
-                } else {
-                    toPrint += "Ab "
-                }
-            case 9:
-                toPrint += "A "
-            case 10:
-                if useSharps {
-                    toPrint += "A# "
-                } else {
-                    toPrint += "Bb "
-                }
-            case 11:
-                toPrint += "B "
-            default:
-                toPrint = "Error"
-            }
-        }
-        
-        if let bassNote = self.bassNote {
-            toPrint += "/ \(bassNote.name)"
-        }
-        
-        return toPrint
+        let keyMap = self.baseScale.resolveKeyMapping()
+        let oppositeScaleKeyMap = self.baseScale.invert().resolveKeyMapping()
+        return "\(self.name): \(self.notes.map { keyMap[$0.value] ?? oppositeScaleKeyMap[$0.value] ?? self.guessName($0.value) }.joined(separator: "-"))"
     }
     
-    static func == (lhs: Chord, rhs: Chord) -> Bool {
-        return lhs.notes.isSame(as: rhs.notes)
+    private func guessName(_ value: Int) -> String {
+        switch value {
+        case 0:
+            return "C"
+        case 1:
+            return "C#"
+        case 2:
+            return "D"
+        case 3:
+            return "D#"
+        case 4:
+            return "E"
+        case 5:
+            return "F"
+        case 6:
+            return "F#"
+        case 7:
+            return "G"
+        case 8:
+            return "G#"
+        case 9:
+            return "A"
+        case 10:
+            return "A#"
+        case 11:
+            return "B"
+        default:
+            print("ERROR: Could not guess note name")
+            return ""
+        }
+    }
+    
+}
+
+extension Array {
+    mutating func rotate(by positions: Int, size: Int? = nil) {
+        guard positions < count && (size ?? 0) <= count else {
+            print("invalid input1")
+            return
+        }
+        reversed(start: 0, end: positions - 1)
+        reversed(start: positions, end: (size ?? count) - 1)
+        reversed(start: 0, end: (size ?? count) - 1)
+    }
+    
+    mutating func reversed(start: Int, end: Int) {
+        guard start >= 0 && end < count && start < end else {
+            return
+        }
+        var start = start
+        var end = end
+        while start < end, start != end {
+            self.swapAt(start, end)
+            start += 1
+            end -= 1
+        }
     }
 }
 
-extension Array where Element: Comparable {
-    func isSame(as other: [Element]) -> Bool {
-        return self.count == other.count && self.sorted() == other.sorted()
-    }
-}

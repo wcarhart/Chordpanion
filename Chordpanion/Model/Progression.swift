@@ -8,21 +8,8 @@
 
 import Foundation
 
-enum Interval {
-    case m2
-    case M2
-    case m3
-    case M3
-    case P4
-    case P5
-    case TT
-    case m6
-    case M6
-    case m7
-    case M7
-}
-
 enum ScaleDegree {
+    // major
     case I
     case II
     case III
@@ -30,6 +17,8 @@ enum ScaleDegree {
     case V
     case VI
     case VII
+    
+    // minor
     case i
     case ii
     case iii
@@ -39,115 +28,64 @@ enum ScaleDegree {
     case vii
 }
 
-struct Progression: CustomStringConvertible {
+struct Progression {
     var key: Scale
-    var chords: [Chord]
+    private var chords: [Chord]
     
-    init(in key: Scale) {
+    init?(inKey key: Scale, degrees: [ScaleDegree]) {
+        
         self.key = key
-        chords = []
+        self.chords = []
+        
+        for degree in degrees {
+            if let chord = Chord(inKey: key, offDegree: degree) {
+                self.chords.append(chord)
+            } else {
+                return nil
+            }
+        }
     }
     
-    init(in key: Scale, withChords chords: [Chord]) {
+    init?(inKey key: Scale, qualitiesAndDegrees qnd: [(ChordClassification, ScaleDegree)]) {
+        self.key = key
+        self.chords = []
+        
+        for (quality, degree) in qnd {
+            if let chord = Chord(inKey: key, offDegree: degree, quality: quality) {
+                self.chords.append(chord)
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    init(fromKey key: Scale, withChords chords: [Chord]) {
         self.key = key
         self.chords = chords
     }
     
-    init?(in key: Scale, withDegrees degrees: [ScaleDegree]) {
-        self.key = key
-        chords = []
-        for degree in degrees {
-            switch degree {
-            case .I:
-                let scaleDegree = key.note(at: 0)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .II:
-                let scaleDegree = key.note(at: 1)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .III:
-                let scaleDegree = key.note(at: 2)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .IV:
-                let scaleDegree = key.note(at: 3)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .V:
-                let scaleDegree = key.note(at: 4)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .VI:
-                let scaleDegree = key.note(at: 5)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .VII:
-                let scaleDegree = key.note(at: 6)!
-                let chord = Chord(in: scaleDegree, ofType: .major)
-                chords.append(chord)
-            case .i:
-                let scaleDegree = key.note(at: 0)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            case .ii:
-                let scaleDegree = key.note(at: 1)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            case .iii:
-                let scaleDegree = key.note(at: 2)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            case .iv:
-                let scaleDegree = key.note(at: 3)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            case .v:
-                let scaleDegree = key.note(at: 4)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            case .vi:
-                let scaleDegree = key.note(at: 5)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            case .vii:
-                let scaleDegree = key.note(at: 6)!
-                let chord = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(chord)
-            }
+    mutating func borrow(fromKey key: Scale, degree: ScaleDegree, quality: ChordClassification, replacingChordAt index: Int) {
+        guard index < self.chords.count else {
+            print("ERROR: selected index greater than number of chords in progression")
+            fatalError("Selected index greater than number of chords in progression")
         }
+        guard let chord = Chord(inKey: key, offDegree: degree, quality: quality) else { print("ERROR: invalid chord"); fatalError("Invalid chord") }
+        self.chords[index] = chord
     }
     
-    // TODO: finish this initializer (is it actually needed?)
-    /*
-    init?(in key: Scale, withIntervals intervals: [Interval]) {
-        self.key = key
-        chords = []
-        for interval in intervals {
-            switch interval {
-            case .m2:
-                let scaleDegree = key.note(at: 1)!
-                let minorSecond = Chord(in: scaleDegree, ofType: .minor)
-                chords.append(minorSecond)
-            case .M2:
-                let scaleDegree = key.note(at: 2)!
-                let majorSecond = Chord(in: scaleDegree, ofType: .major)
-            case .m3:
-            case .M3:
-            case .P4:
-            case .P5:
-            case .TT:
-            case .m6:
-            case .M6:
-            case .m7:
-            case .M7:
-            }
+    mutating func append(chord: Chord) {
+        self.chords.append(chord)
+    }
+    
+    mutating func append(chords: [Chord]) {
+        for chord in chords {
+            self.chords.append(chord)
         }
     }
-    */
-    
+}
+
+extension Progression: CustomStringConvertible {
     var description: String {
-        let chordNames = chords.map { $0.name }
-        return chordNames.joined(separator: "-")
+        return self.chords.enumerated().map { String("Chord \($0 + 1): \($1)") }.joined(separator: "\n")
     }
 }
