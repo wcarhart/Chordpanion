@@ -1,18 +1,18 @@
 //
-//  ViewController.swift
+//  LoadingViewController.swift
 //  Chordpanion
 //
-//  Created by Will Carhart on 4/21/18.
+//  Created by Will Carhart on 5/16/18.
 //  Copyright © 2018 Will Carhart. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoadingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let C = Note(name: "C")!
         print("C: \(C.value)")
         
@@ -41,7 +41,15 @@ class ViewController: UIViewController {
         
         let Cdim = Chord(inKey: Cmaj, offDegree: .I, quality: .diminished)!
         print(Cdim)
+        
+        
+        let pianoView = PianoView()
+        pianoView.heightAnchor.constraint(equalToConstant: 200.0)
+        pianoView.widthAnchor.constraint(equalToConstant: 375.0)
+        self.view.addSubview(pianoView)
+        pianoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        pianoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        pianoView.translatesAutoresizingMaskIntoConstraints = false
     }
 
 }
-

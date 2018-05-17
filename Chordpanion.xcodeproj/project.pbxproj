@@ -13,8 +13,12 @@
 		727C066B20AD327D00ECDDDB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066A20AD327D00ECDDDB /* ListViewController.swift */; };
 		727C066D20AD329200ECDDDB /* SelectedProgressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066C20AD329200ECDDDB /* SelectedProgressionViewController.swift */; };
 		727C066F20AD32AC00ECDDDB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */; };
+		727C067120AD334600ECDDDB /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C067020AD334600ECDDDB /* LoadingViewController.swift */; };
+		727C067320AD36B100ECDDDB /* ProgressionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 727C067220AD36B100ECDDDB /* ProgressionCell.xib */; };
+		727C067720AD37C800ECDDDB /* ProgressionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */; };
+		727C067920AD3AC200ECDDDB /* PianoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 727C067820AD3AC200ECDDDB /* PianoView.xib */; };
+		727C067B20AD3AD800ECDDDB /* PianoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C067A20AD3AD800ECDDDB /* PianoView.swift */; };
 		72949A16208C1834001D0911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A15208C1834001D0911 /* AppDelegate.swift */; };
-		72949A18208C1834001D0911 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A17208C1834001D0911 /* ViewController.swift */; };
 		72949A1B208C1834001D0911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72949A19208C1834001D0911 /* Main.storyboard */; };
 		72949A1D208C1837001D0911 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72949A1C208C1837001D0911 /* Assets.xcassets */; };
 		72949A20208C1837001D0911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72949A1E208C1837001D0911 /* LaunchScreen.storyboard */; };
@@ -50,9 +54,13 @@
 		727C066A20AD327D00ECDDDB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		727C066C20AD329200ECDDDB /* SelectedProgressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedProgressionViewController.swift; sourceTree = "<group>"; };
 		727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		727C067020AD334600ECDDDB /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		727C067220AD36B100ECDDDB /* ProgressionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressionCell.xib; sourceTree = "<group>"; };
+		727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionTableViewCell.swift; sourceTree = "<group>"; };
+		727C067820AD3AC200ECDDDB /* PianoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoView.xib; sourceTree = "<group>"; };
+		727C067A20AD3AD800ECDDDB /* PianoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoView.swift; sourceTree = "<group>"; };
 		72949A12208C1834001D0911 /* Chordpanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chordpanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72949A15208C1834001D0911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		72949A17208C1834001D0911 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		72949A1A208C1834001D0911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72949A1C208C1837001D0911 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72949A1F208C1837001D0911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,6 +168,8 @@
 			children = (
 				72949A19208C1834001D0911 /* Main.storyboard */,
 				72949A1E208C1837001D0911 /* LaunchScreen.storyboard */,
+				727C067220AD36B100ECDDDB /* ProgressionCell.xib */,
+				727C067820AD3AC200ECDDDB /* PianoView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,13 +178,15 @@
 			isa = PBXGroup;
 			children = (
 				72949A15208C1834001D0911 /* AppDelegate.swift */,
-				72949A17208C1834001D0911 /* ViewController.swift */,
 				727C066420AD317900ECDDDB /* NewProgressionViewController.swift */,
 				727C066620AD318F00ECDDDB /* NewMashupViewController.swift */,
 				727C066820AD31A100ECDDDB /* FavoritesViewController.swift */,
 				727C066A20AD327D00ECDDDB /* ListViewController.swift */,
 				727C066C20AD329200ECDDDB /* SelectedProgressionViewController.swift */,
 				727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */,
+				727C067020AD334600ECDDDB /* LoadingViewController.swift */,
+				727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */,
+				727C067A20AD3AD800ECDDDB /* PianoView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,8 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				72949A20208C1837001D0911 /* LaunchScreen.storyboard in Resources */,
+				727C067920AD3AC200ECDDDB /* PianoView.xib in Resources */,
 				72949A1D208C1837001D0911 /* Assets.xcassets in Resources */,
 				72949A1B208C1834001D0911 /* Main.storyboard in Resources */,
+				727C067320AD36B100ECDDDB /* ProgressionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,9 +341,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72949A18208C1834001D0911 /* ViewController.swift in Sources */,
 				727C066920AD31A100ECDDDB /* FavoritesViewController.swift in Sources */,
 				72949A48208C1D09001D0911 /* Chord.swift in Sources */,
+				727C067720AD37C800ECDDDB /* ProgressionTableViewCell.swift in Sources */,
 				72949A50208C74CD001D0911 /* Progression.swift in Sources */,
 				727C066D20AD329200ECDDDB /* SelectedProgressionViewController.swift in Sources */,
 				72949A16208C1834001D0911 /* AppDelegate.swift in Sources */,
@@ -337,7 +351,9 @@
 				72949A4A208C1D11001D0911 /* Scale.swift in Sources */,
 				727C066520AD317900ECDDDB /* NewProgressionViewController.swift in Sources */,
 				727C066B20AD327D00ECDDDB /* ListViewController.swift in Sources */,
+				727C067B20AD3AD800ECDDDB /* PianoView.swift in Sources */,
 				727C066720AD318F00ECDDDB /* NewMashupViewController.swift in Sources */,
+				727C067120AD334600ECDDDB /* LoadingViewController.swift in Sources */,
 				727C066F20AD32AC00ECDDDB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
