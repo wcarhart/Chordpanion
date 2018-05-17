@@ -31,8 +31,6 @@ class NewProgressionViewController: UIViewController {
     @IBOutlet weak var doubleQualityLabel0: UILabel!
     @IBOutlet weak var doubleQualityLabel1: UILabel!
     
-    var selectedNote: String!
-    
     let keys: [String: [Quality]] = [
         "C": [.major, .minor],
         "G": [.major, .minor],
@@ -69,15 +67,18 @@ class NewProgressionViewController: UIViewController {
         "A#": "Bb"
     ]
     
+    var displayNote: String!
+    var selectedNote: String!
+    var selectedQuality: Quality!
+    
     var showEnharmonics: Bool = false
-    var useOneEnharmonic: Bool = true
     var showQualities: Bool = false
-    var useOneQuality: Bool = false
     var showSubmitButton: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        displayNote = ""
         selectedNote = ""
         
         setupKeyButtons()
@@ -86,12 +87,15 @@ class NewProgressionViewController: UIViewController {
     
     func updateUI() {
         if showEnharmonics {
-            if useOneEnharmonic {
-                self.oneEnharmonicView.isHidden = false
-                self.twoEnharmonicsView.isHidden = true
-            } else {
+            if let equiv = enharmonicEquivalents[displayNote] {
                 self.oneEnharmonicView.isHidden = true
                 self.twoEnharmonicsView.isHidden = false
+                self.twoEnharmonicsLabel0.text = displayNote
+                self.twoEnharmonicsLabel1.text = equiv
+            } else {
+                self.oneEnharmonicView.isHidden = false
+                self.twoEnharmonicsView.isHidden = true
+                self.oneEnharmonicLabel.text = displayNote
             }
         } else {
             self.oneEnharmonicView.isHidden = true
@@ -99,12 +103,15 @@ class NewProgressionViewController: UIViewController {
         }
         
         if showQualities {
-            if useOneQuality {
-                self.singleQualityView.isHidden = false
-                self.doubleQualityView.isHidden = true
-            } else {
+            if (keys[selectedNote]?.count)! > 1 {
                 self.singleQualityView.isHidden = true
                 self.doubleQualityView.isHidden = false
+                self.doubleQualityLabel0.text = "Major"
+                self.doubleQualityLabel1.text = "Minor"
+            } else {
+                self.singleQualityView.isHidden = false
+                self.doubleQualityView.isHidden = true
+                self.singleQualityLabel.text = keys[selectedNote]?.first?.rawValue
             }
         } else {
             self.singleQualityView.isHidden = true
@@ -158,17 +165,20 @@ class NewProgressionViewController: UIViewController {
         case 1:
             // note selected
             showEnharmonics = true
-            switch self.selectedNote {
-            case "C", "G", "D", "A", "E":
-                useOneEnharmonic = true
-                useOneQuality = false
-            }
+            showQualities = enharmonicEquivalents[displayNote] == nil ? true : false
+            //showSubmitButton = keys[selectedNote]?.count == 1 ? true : false
+            showSubmitButton = false
         case 2:
             // enharmonic selected
-            print("")
+            showEnharmonics = true
+            //showQualities = enharmonicEquivalents[displayNote] == nil ? true : false
+            showQualities = true
+            showSubmitButton = keys[selectedNote]?.count == 1 ? true : false
         case 3:
             // quality selected
-            print("")
+            showEnharmonics = true
+            showQualities = true
+            showSubmitButton = true
         default:
             print("ERROR: invalid utton config command")
             fatalError("invalid button config command")
@@ -179,6 +189,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonCPressed() {
         resetColors()
+        self.displayNote = "C"
         self.selectedNote = "C"
         updateButtons(withCommand: 1)
         self.pianoView.keyC.backgroundColor = FlatOrange()
@@ -186,6 +197,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonDPressed() {
         resetColors()
+        self.displayNote = "D"
         self.selectedNote = "D"
         updateButtons(withCommand: 1)
         self.pianoView.keyD.backgroundColor = FlatOrange()
@@ -193,6 +205,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonEPressed() {
         resetColors()
+        self.displayNote = "E"
         self.selectedNote = "E"
         updateButtons(withCommand: 1)
         self.pianoView.keyE.backgroundColor = FlatOrange()
@@ -200,6 +213,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonFPressed() {
         resetColors()
+        self.displayNote = "F"
         self.selectedNote = "F"
         updateButtons(withCommand: 1)
         self.pianoView.keyF.backgroundColor = FlatOrange()
@@ -207,6 +221,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonGPressed() {
         resetColors()
+        self.displayNote = "G"
         self.selectedNote = "G"
         updateButtons(withCommand: 1)
         self.pianoView.keyG.backgroundColor = FlatOrange()
@@ -214,6 +229,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonAPressed() {
         resetColors()
+        self.displayNote = "A"
         self.selectedNote = "A"
         updateButtons(withCommand: 1)
         self.pianoView.keyA.backgroundColor = FlatOrange()
@@ -221,6 +237,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonBPressed() {
         resetColors()
+        self.displayNote = "B"
         self.selectedNote = "B"
         updateButtons(withCommand: 1)
         self.pianoView.keyB.backgroundColor = FlatOrange()
@@ -228,6 +245,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonCsDbPressed() {
         resetColors()
+        self.displayNote = "C#"
         self.selectedNote = "C#"
         updateButtons(withCommand: 1)
         self.pianoView.keyCsDb.backgroundColor = FlatOrange()
@@ -235,6 +253,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonDsEbPressed() {
         resetColors()
+        self.displayNote = "D#"
         self.selectedNote = "D#"
         updateButtons(withCommand: 1)
         self.pianoView.keyDsEb.backgroundColor = FlatOrange()
@@ -242,6 +261,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonFsGbPressed() {
         resetColors()
+        self.displayNote = "F#"
         self.selectedNote = "F#"
         updateButtons(withCommand: 1)
         self.pianoView.keyFsGb.backgroundColor = FlatOrange()
@@ -249,6 +269,7 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonGsAbPressed() {
         resetColors()
+        self.displayNote = "G#"
         self.selectedNote = "G#"
         updateButtons(withCommand: 1)
         self.pianoView.keyGsAb.backgroundColor = FlatOrange()
@@ -256,29 +277,35 @@ class NewProgressionViewController: UIViewController {
     
     @objc func buttonAsBbPressed() {
         resetColors()
+        self.displayNote = "A#"
         self.selectedNote = "A#"
         updateButtons(withCommand: 1)
         self.pianoView.keyAsBb.backgroundColor = FlatOrange()
     }
 
     @IBAction func twoEnharmonicsButton0Pressed(_ sender: UIButton) {
-        
+        selectedNote = displayNote
+        updateButtons(withCommand: 2)
     }
     
     @IBAction func twoEnharmonicsButton1Pressed(_ sender: UIButton) {
-        
+        selectedNote = enharmonicEquivalents[displayNote]
+        updateButtons(withCommand: 2)
     }
     
     @IBAction func majorButtonPressed(_ sender: UIButton) {
-        
+        selectedQuality = .major
+        updateButtons(withCommand: 3)
     }
     
     @IBAction func minorButtonPressed(_ sender: UIButton) {
-        
+        selectedQuality = .minor
+        updateButtons(withCommand: 3)
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        
+        // DEBUG: 
+        print("Selected \(selectedNote!) with quality \((keys[selectedNote]?.count)! > 1 ? selectedQuality.rawValue : keys[selectedNote]?.first?.rawValue ?? "ERR")")
     }
     
     
