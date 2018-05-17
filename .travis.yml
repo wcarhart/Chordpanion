@@ -1,2 +1,10 @@
 language: swift
+
 os: osx
+
+before_install:
+   - rvm use system
+   - sudo gem install cocoapods -v '1.5.0'
+
+script: 
+    xctool -workspace Chordpanion.xcworkspace -scheme Chordpanion build -sdk iphonesimulator
