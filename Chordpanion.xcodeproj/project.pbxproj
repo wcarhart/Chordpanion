@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		727C066520AD317900ECDDDB /* NewProgressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066420AD317900ECDDDB /* NewProgressionViewController.swift */; };
+		727C066720AD318F00ECDDDB /* NewMashupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066620AD318F00ECDDDB /* NewMashupViewController.swift */; };
+		727C066920AD31A100ECDDDB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066820AD31A100ECDDDB /* FavoritesViewController.swift */; };
+		727C066B20AD327D00ECDDDB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066A20AD327D00ECDDDB /* ListViewController.swift */; };
+		727C066D20AD329200ECDDDB /* SelectedProgressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066C20AD329200ECDDDB /* SelectedProgressionViewController.swift */; };
+		727C066F20AD32AC00ECDDDB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */; };
 		72949A16208C1834001D0911 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A15208C1834001D0911 /* AppDelegate.swift */; };
 		72949A18208C1834001D0911 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A17208C1834001D0911 /* ViewController.swift */; };
 		72949A1B208C1834001D0911 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72949A19208C1834001D0911 /* Main.storyboard */; };
@@ -38,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		727C066420AD317900ECDDDB /* NewProgressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProgressionViewController.swift; sourceTree = "<group>"; };
+		727C066620AD318F00ECDDDB /* NewMashupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMashupViewController.swift; sourceTree = "<group>"; };
+		727C066820AD31A100ECDDDB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		727C066A20AD327D00ECDDDB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		727C066C20AD329200ECDDDB /* SelectedProgressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedProgressionViewController.swift; sourceTree = "<group>"; };
+		727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		72949A12208C1834001D0911 /* Chordpanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chordpanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72949A15208C1834001D0911 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72949A17208C1834001D0911 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +169,12 @@
 			children = (
 				72949A15208C1834001D0911 /* AppDelegate.swift */,
 				72949A17208C1834001D0911 /* ViewController.swift */,
+				727C066420AD317900ECDDDB /* NewProgressionViewController.swift */,
+				727C066620AD318F00ECDDDB /* NewMashupViewController.swift */,
+				727C066820AD31A100ECDDDB /* FavoritesViewController.swift */,
+				727C066A20AD327D00ECDDDB /* ListViewController.swift */,
+				727C066C20AD329200ECDDDB /* SelectedProgressionViewController.swift */,
+				727C066E20AD32AC00ECDDDB /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -310,11 +328,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				72949A18208C1834001D0911 /* ViewController.swift in Sources */,
+				727C066920AD31A100ECDDDB /* FavoritesViewController.swift in Sources */,
 				72949A48208C1D09001D0911 /* Chord.swift in Sources */,
 				72949A50208C74CD001D0911 /* Progression.swift in Sources */,
+				727C066D20AD329200ECDDDB /* SelectedProgressionViewController.swift in Sources */,
 				72949A16208C1834001D0911 /* AppDelegate.swift in Sources */,
 				72949A44208C1A77001D0911 /* Note.swift in Sources */,
 				72949A4A208C1D11001D0911 /* Scale.swift in Sources */,
+				727C066520AD317900ECDDDB /* NewProgressionViewController.swift in Sources */,
+				727C066B20AD327D00ECDDDB /* ListViewController.swift in Sources */,
+				727C066720AD318F00ECDDDB /* NewMashupViewController.swift in Sources */,
+				727C066F20AD32AC00ECDDDB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

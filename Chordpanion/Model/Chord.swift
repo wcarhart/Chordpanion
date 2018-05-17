@@ -110,7 +110,6 @@ struct Chord {
         self.classification = quality
         self.name = ""
         
-        // TODO: finish name detection
         self.name = "\(key.resolveName())\(abbreviate())"
         
         switch degree {
