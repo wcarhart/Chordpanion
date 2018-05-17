@@ -9,24 +9,113 @@
 import UIKit
 import ChameleonFramework
 
+enum Quality: String {
+    case major = "Major"
+    case minor = "Minor"
+}
+
 class NewProgressionViewController: UIViewController {
 
     @IBOutlet weak var pianoView: PianoView!
     
     @IBOutlet weak var oneEnharmonicView: UIView!
     @IBOutlet weak var twoEnharmonicsView: UIView!
-    @IBOutlet weak var majorMinorView: UIView!
+    @IBOutlet weak var singleQualityView: UIView!
+    @IBOutlet weak var doubleQualityView: UIView!
     @IBOutlet weak var submitView: UIView!
     
     @IBOutlet weak var oneEnharmonicLabel: UILabel!
-    
     @IBOutlet weak var twoEnharmonicsLabel0: UILabel!
     @IBOutlet weak var twoEnharmonicsLabel1: UILabel!
+    @IBOutlet weak var singleQualityLabel: UILabel!
+    @IBOutlet weak var doubleQualityLabel0: UILabel!
+    @IBOutlet weak var doubleQualityLabel1: UILabel!
+    
+    var selectedNote: String!
+    
+    let keys: [String: [Quality]] = [
+        "C": [.major, .minor],
+        "G": [.major, .minor],
+        "D": [.major, .minor],
+        "A": [.major, .minor],
+        "E": [.major, .minor],
+        "B": [.major, .minor],
+        "Cb": [.major],
+        "F#": [.major, .minor],
+        "Gb": [.major],
+        "C#": [.major, .minor],
+        "Db": [.major],
+        "Ab": [.major, .minor],
+        "G#": [.minor],
+        "Eb": [.major, .minor],
+        "D#": [.minor],
+        "Bb": [.major, .minor],
+        "A#": [.minor],
+        "F": [.major, .minor]
+    ]
+    
+    let enharmonicEquivalents: [String: String] = [
+        "B": "Cb",
+        "Cb": "B",
+        "F#": "Gb",
+        "Gb": "F#",
+        "C#": "Db",
+        "Db": "C#",
+        "Ab": "G#",
+        "G#": "Ab",
+        "Eb": "D#",
+        "D#": "Eb",
+        "Bb": "A#",
+        "A#": "Bb"
+    ]
+    
+    var showEnharmonics: Bool = false
+    var useOneEnharmonic: Bool = true
+    var showQualities: Bool = false
+    var useOneQuality: Bool = false
+    var showSubmitButton: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        selectedNote = ""
+        
         setupKeyButtons()
         updateButtons(withCommand: 0)
+    }
+    
+    func updateUI() {
+        if showEnharmonics {
+            if useOneEnharmonic {
+                self.oneEnharmonicView.isHidden = false
+                self.twoEnharmonicsView.isHidden = true
+            } else {
+                self.oneEnharmonicView.isHidden = true
+                self.twoEnharmonicsView.isHidden = false
+            }
+        } else {
+            self.oneEnharmonicView.isHidden = true
+            self.twoEnharmonicsView.isHidden = true
+        }
+        
+        if showQualities {
+            if useOneQuality {
+                self.singleQualityView.isHidden = false
+                self.doubleQualityView.isHidden = true
+            } else {
+                self.singleQualityView.isHidden = true
+                self.doubleQualityView.isHidden = false
+            }
+        } else {
+            self.singleQualityView.isHidden = true
+            self.doubleQualityView.isHidden = true
+        }
+        
+        if showSubmitButton {
+            self.submitView.isHidden = false
+        } else {
+            self.submitView.isHidden = true
+        }
     }
     
     private func setupKeyButtons() {
@@ -59,27 +148,20 @@ class NewProgressionViewController: UIViewController {
         self.pianoView.keyAsBb.backgroundColor = FlatBlack()
     }
     
-    func updateButtons(withCommand command: Int, note: String = "") {
+    func updateButtons(withCommand command: Int) {
         switch command {
         case 0:
             // no note selected
-            self.oneEnharmonicView.isHidden = true
-            self.twoEnharmonicsView.isHidden = true
-            self.majorMinorView.isHidden = true
-            self.submitView.isHidden = true
+            showEnharmonics = false
+            showQualities = false
+            showSubmitButton = false
         case 1:
             // note selected
-            guard note != "" else { return }
-            switch note {
-            case "C", "D", "E", "F", "G", "A", "B":
-                self.oneEnharmonicView.isHidden = false
-                self.twoEnharmonicsView.isHidden = true
-            case "C#", "Db", "D#", "Eb", "F#", "Gb", "G#", "Ab", "A#", "Bb":
-                self.oneEnharmonicView.isHidden = true
-                self.twoEnharmonicsView.isHidden = false
-            default:
-                print("ERROR: invalid note name")
-                fatalError("invalid note name")
+            showEnharmonics = true
+            switch self.selectedNote {
+            case "C", "G", "D", "A", "E":
+                useOneEnharmonic = true
+                useOneQuality = false
             }
         case 2:
             // enharmonic selected
@@ -91,77 +173,91 @@ class NewProgressionViewController: UIViewController {
             print("ERROR: invalid utton config command")
             fatalError("invalid button config command")
         }
+        
+        updateUI()
     }
     
     @objc func buttonCPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "C")
+        self.selectedNote = "C"
+        updateButtons(withCommand: 1)
         self.pianoView.keyC.backgroundColor = FlatOrange()
     }
     
     @objc func buttonDPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "D")
+        self.selectedNote = "D"
+        updateButtons(withCommand: 1)
         self.pianoView.keyD.backgroundColor = FlatOrange()
     }
     
     @objc func buttonEPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "E")
+        self.selectedNote = "E"
+        updateButtons(withCommand: 1)
         self.pianoView.keyE.backgroundColor = FlatOrange()
     }
     
     @objc func buttonFPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "F")
+        self.selectedNote = "F"
+        updateButtons(withCommand: 1)
         self.pianoView.keyF.backgroundColor = FlatOrange()
     }
     
     @objc func buttonGPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "G")
+        self.selectedNote = "G"
+        updateButtons(withCommand: 1)
         self.pianoView.keyG.backgroundColor = FlatOrange()
     }
     
     @objc func buttonAPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "A")
+        self.selectedNote = "A"
+        updateButtons(withCommand: 1)
         self.pianoView.keyA.backgroundColor = FlatOrange()
     }
     
     @objc func buttonBPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "B")
+        self.selectedNote = "B"
+        updateButtons(withCommand: 1)
         self.pianoView.keyB.backgroundColor = FlatOrange()
     }
     
     @objc func buttonCsDbPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "C#")
+        self.selectedNote = "C#"
+        updateButtons(withCommand: 1)
         self.pianoView.keyCsDb.backgroundColor = FlatOrange()
     }
     
     @objc func buttonDsEbPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "Eb")
+        self.selectedNote = "D#"
+        updateButtons(withCommand: 1)
         self.pianoView.keyDsEb.backgroundColor = FlatOrange()
     }
     
     @objc func buttonFsGbPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "F#")
+        self.selectedNote = "F#"
+        updateButtons(withCommand: 1)
         self.pianoView.keyFsGb.backgroundColor = FlatOrange()
     }
     
     @objc func buttonGsAbPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "G#")
+        self.selectedNote = "G#"
+        updateButtons(withCommand: 1)
         self.pianoView.keyGsAb.backgroundColor = FlatOrange()
     }
     
     @objc func buttonAsBbPressed() {
         resetColors()
-        updateButtons(withCommand: 1, note: "Bb")
+        self.selectedNote = "A#"
+        updateButtons(withCommand: 1)
         self.pianoView.keyAsBb.backgroundColor = FlatOrange()
     }
 
