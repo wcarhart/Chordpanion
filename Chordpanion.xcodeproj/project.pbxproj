@@ -26,6 +26,7 @@
 		72949A48208C1D09001D0911 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A47208C1D09001D0911 /* Chord.swift */; };
 		72949A4A208C1D11001D0911 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A49208C1D11001D0911 /* Scale.swift */; };
 		72949A50208C74CD001D0911 /* Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A4F208C74CD001D0911 /* Progression.swift */; };
+		72BDCC5420ADF9D900855310 /* Credits.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72BDCC5320ADF9D900855310 /* Credits.txt */; };
 		72D6F6F420ADD7A4006F7A94 /* PianoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D6F6F320ADD7A4006F7A94 /* PianoView.xib */; };
 		72D6F6F620ADD7B4006F7A94 /* PianoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6F6F520ADD7B4006F7A94 /* PianoView.swift */; };
 		D48D7361FE481C41C8163FB4 /* Pods_ChordpanionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6F62291F25A356013CA2CA /* Pods_ChordpanionTests.framework */; };
@@ -79,6 +80,7 @@
 		72949A47208C1D09001D0911 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		72949A49208C1D11001D0911 /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		72949A4F208C74CD001D0911 /* Progression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progression.swift; sourceTree = "<group>"; };
+		72BDCC5320ADF9D900855310 /* Credits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits.txt; sourceTree = "<group>"; };
 		72D6F6F320ADD7A4006F7A94 /* PianoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoView.xib; sourceTree = "<group>"; };
 		72D6F6F520ADD7B4006F7A94 /* PianoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoView.swift; sourceTree = "<group>"; };
 		7ECFE1AE292CF351D1C2EABE /* Pods_ChordpanionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChordpanionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				72949A55208D959A001D0911 /* Controller */,
 				72949A1C208C1837001D0911 /* Assets.xcassets */,
 				72949A21208C1837001D0911 /* Info.plist */,
+				72BDCC5320ADF9D900855310 /* Credits.txt */,
 			);
 			path = Chordpanion;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72949A20208C1837001D0911 /* LaunchScreen.storyboard in Resources */,
+				72BDCC5420ADF9D900855310 /* Credits.txt in Resources */,
 				72D6F6F420ADD7A4006F7A94 /* PianoView.xib in Resources */,
 				72949A1D208C1837001D0911 /* Assets.xcassets in Resources */,
 				72949A1B208C1834001D0911 /* Main.storyboard in Resources */,
@@ -647,7 +651,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = Chordpanion/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.Chordpanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -663,7 +670,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = Chordpanion/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.Chordpanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -680,7 +690,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -698,7 +712,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -715,7 +733,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -732,7 +754,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = ChordpanionUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.ChordpanionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
