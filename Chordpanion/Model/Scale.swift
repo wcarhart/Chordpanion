@@ -391,9 +391,6 @@ extension Scale: CustomStringConvertible {
             toReturn = [1: "Db", 3: "Eb", 5: "F", 6: "Gb", 8: "Ab", 10: "Bb", 0: "C"]
         case "d":
             toReturn = [2: "D", 4: "E", 6: "F#", 7: "G", 9: "A", 11: "B", 1: "C"]
-        case "d#":
-            // TODO: minor key, how to handle this?
-            break
         case "eb":
             toReturn = [3: "Eb", 5: "F", 7: "G", 8: "Ab", 10: "Bb", 0: "C", 2: "D"]
         case "e":
@@ -406,16 +403,10 @@ extension Scale: CustomStringConvertible {
             toReturn = [6: "Gb", 8: "Ab", 10: "Bb", 11: "Cb", 1: "Db", 3: "Eb", 5: "F"]
         case "g":
             toReturn = [7: "G", 9: "A", 11: "B", 0: "C", 2: "D", 4: "E", 6: "F#"]
-        case "g#":
-            // TODO: minor key, how to handle this?
-            break
         case "ab":
             toReturn = [8: "Ab", 10: "Bb", 0: "C", 1: "Db", 3: "Eb", 5: "F", 7: "G"]
         case "a":
             toReturn = [9: "A", 11: "B", 1: "C#", 2: "D", 4: "E", 6: "F#", 8: "G#"]
-        case "a#":
-            // TODO: minor key, how to handle this?
-            break
         case "bb":
             toReturn = [10: "Bb", 0: "C", 2: "D", 3: "Eb", 5: "F", 7: "G", 9: "A"]
         case "b":
