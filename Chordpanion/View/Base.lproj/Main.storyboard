@@ -540,6 +540,7 @@
                         <outlet property="twoEnharmonicsLabel0" destination="8fZ-1B-rdh" id="bsG-NQ-UI8"/>
                         <outlet property="twoEnharmonicsLabel1" destination="0Cp-tC-IO4" id="VM4-vQ-dhx"/>
                         <outlet property="twoEnharmonicsView" destination="USF-KC-hE3" id="Y91-ce-PWg"/>
+                        <segue destination="JKo-OV-4Zj" kind="show" identifier="showProgressions" id="Nus-l2-hwV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLS-RR-Fmk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -553,11 +554,37 @@
                     <view key="view" contentMode="scaleToFill" id="aDB-eP-BUv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L3D-kQ-arK">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ZRx-22-2Uw">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZRx-22-2Uw" id="qhY-RO-cA8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="L3D-kQ-arK" firstAttribute="leading" secondItem="cXv-t4-Trv" secondAttribute="leading" id="5WL-4o-NvV"/>
+                            <constraint firstItem="cXv-t4-Trv" firstAttribute="trailing" secondItem="L3D-kQ-arK" secondAttribute="trailing" id="h6f-nk-QeD"/>
+                            <constraint firstItem="L3D-kQ-arK" firstAttribute="top" secondItem="cXv-t4-Trv" secondAttribute="top" id="pap-rt-nkA"/>
+                            <constraint firstItem="cXv-t4-Trv" firstAttribute="bottom" secondItem="L3D-kQ-arK" secondAttribute="bottom" id="zRQ-Jj-pQD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cXv-t4-Trv"/>
                     </view>
+                    <connections>
+                        <segue destination="1ju-o4-d5i" kind="unwind" identifier="unwindToNewProgression" unwindAction="unwindToNewProgressionWithSegue:" id="Eff-w4-wFU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fox-7v-mjD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1ju-o4-d5i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="52" y="2710"/>
         </scene>

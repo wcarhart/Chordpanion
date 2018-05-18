@@ -346,10 +346,22 @@ class NewProgressionViewController: UIViewController {
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         // DEBUG: 
-        print("Selected \(selectedNote!) with quality \((keys[selectedNote]?.count)! > 1 ? selectedQuality.rawValue : keys[selectedNote]?.first?.rawValue ?? "ERR")")
+        print("LOG: selected \(selectedNote!) \((keys[selectedNote]?.count)! > 1 ? selectedQuality.rawValue.lowercased() : keys[selectedNote]?.first?.rawValue.lowercased() ?? "ERR")")
+        performSegue(withIdentifier: "showProgressions", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showProgressions" else { return }
+        
+        if let destination = segue.destination as? ListViewController {
+            destination.inputKey = self.selectedNote
+            destination.inputClassification = (keys[selectedNote]?.count)! > 1 ? selectedQuality.rawValue : keys[selectedNote]?.first?.rawValue
+        }
+    }
     
+    @IBAction func unwindToNewProgression(segue: UIStoryboardSegue) {
+        
+    }
     
     
     

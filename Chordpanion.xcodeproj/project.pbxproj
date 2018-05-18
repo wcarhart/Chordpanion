@@ -27,6 +27,8 @@
 		72949A4A208C1D11001D0911 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A49208C1D11001D0911 /* Scale.swift */; };
 		72949A50208C74CD001D0911 /* Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72949A4F208C74CD001D0911 /* Progression.swift */; };
 		72BDCC5420ADF9D900855310 /* Credits.txt in Resources */ = {isa = PBXBuildFile; fileRef = 72BDCC5320ADF9D900855310 /* Credits.txt */; };
+		72BDCC5620AE446700855310 /* Staff.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72BDCC5520AE446700855310 /* Staff.xib */; };
+		72BDCC5820AE447B00855310 /* Staff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDCC5720AE447B00855310 /* Staff.swift */; };
 		72D6F6F420ADD7A4006F7A94 /* PianoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D6F6F320ADD7A4006F7A94 /* PianoView.xib */; };
 		72D6F6F620ADD7B4006F7A94 /* PianoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6F6F520ADD7B4006F7A94 /* PianoView.swift */; };
 		D48D7361FE481C41C8163FB4 /* Pods_ChordpanionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6F62291F25A356013CA2CA /* Pods_ChordpanionTests.framework */; };
@@ -81,6 +83,8 @@
 		72949A49208C1D11001D0911 /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		72949A4F208C74CD001D0911 /* Progression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progression.swift; sourceTree = "<group>"; };
 		72BDCC5320ADF9D900855310 /* Credits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits.txt; sourceTree = "<group>"; };
+		72BDCC5520AE446700855310 /* Staff.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Staff.xib; sourceTree = "<group>"; };
+		72BDCC5720AE447B00855310 /* Staff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staff.swift; sourceTree = "<group>"; };
 		72D6F6F320ADD7A4006F7A94 /* PianoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoView.xib; sourceTree = "<group>"; };
 		72D6F6F520ADD7B4006F7A94 /* PianoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoView.swift; sourceTree = "<group>"; };
 		7ECFE1AE292CF351D1C2EABE /* Pods_ChordpanionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChordpanionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +194,7 @@
 				72949A1E208C1837001D0911 /* LaunchScreen.storyboard */,
 				727C067220AD36B100ECDDDB /* ProgressionCell.xib */,
 				72D6F6F320ADD7A4006F7A94 /* PianoView.xib */,
+				72BDCC5520AE446700855310 /* Staff.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				727C067020AD334600ECDDDB /* LoadingViewController.swift */,
 				727C067620AD37C800ECDDDB /* ProgressionTableViewCell.swift */,
 				72D6F6F520ADD7B4006F7A94 /* PianoView.swift */,
+				72BDCC5720AE447B00855310 /* Staff.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72949A20208C1837001D0911 /* LaunchScreen.storyboard in Resources */,
+				72BDCC5620AE446700855310 /* Staff.xib in Resources */,
 				72BDCC5420ADF9D900855310 /* Credits.txt in Resources */,
 				72D6F6F420ADD7A4006F7A94 /* PianoView.xib in Resources */,
 				72949A1D208C1837001D0911 /* Assets.xcassets in Resources */,
@@ -461,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72BDCC5820AE447B00855310 /* Staff.swift in Sources */,
 				727C066920AD31A100ECDDDB /* FavoritesViewController.swift in Sources */,
 				72949A48208C1D09001D0911 /* Chord.swift in Sources */,
 				727C067720AD37C800ECDDDB /* ProgressionTableViewCell.swift in Sources */,
